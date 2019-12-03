@@ -24,7 +24,13 @@ export default class Search extends Component {
 
     submit = (e) => {
         e.preventDefault();
-        //navigator.geolocation.getCurrentPosition();//need to work on location setting
+        navigator.geolocation.getCurrentPosition((position => {
+            this.setState({
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude,
+            });
+        }))
+        console.log(this.state.latitude, this.state.longitude);
         this.props.history.push(`latitude=${this.state.latitude}&
                                 longitude=${this.state.longitude}&
                                 categories=${this.state.categories}&

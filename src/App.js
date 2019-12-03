@@ -48,34 +48,35 @@ class App extends Component {
         if (!checkLimit) { queryString += `limit=${limit}` };
     }
     
-      fetch('https://cors-anywhere.herokuapp.com/' + queryString, {
+    
+    fetch('https://cors-anywhere.herokuapp.com/' + queryString, {
           headers: {'Authorization': 'Bearer ' + apiKey},
+    })
+      .then(response => {response.json(); console.log(response);})
+      .then(data => {
+          this.setState({
+              results: data,
+              latitude: latitude,
+              longitude: longitude,
+              categories: categories,
+              radius: radius,
+              term: term,
+              offset: offset,
+              limit: limit
+          })
       })
-        .then(response => {response.json(); console.log(response);})
-        .then(data => {
-            this.setState({
-                results: data,
-                latitude: latitude,
-                longitude: longitude,
-                categories: categories,
-                radius: radius,
-                term: term,
-                offset: offset,
-                limit: limit
-            })
-        })
-        .catch(() => {
-            this.setState({
-                results: 'none',
-                latitude: latitude,
-                longitude: longitude,
-                categories: categories,
-                radius: radius,
-                term: term,
-                offset: offset,
-                limit: limit
-            });
-        });
+      .catch(() => {
+          this.setState({
+              results: 'none',
+              latitude: latitude,
+              longitude: longitude,
+              categories: categories,
+              radius: radius,
+              term: term,
+              offset: offset,
+              limit: limit
+          });
+      });
   }
 
   render() {
