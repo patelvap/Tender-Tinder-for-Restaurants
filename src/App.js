@@ -2,8 +2,14 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Header from './components/Header';
 import Search from './components/Search';
+import MenuBar from './components/Menubar';
 import './App.css';
 import { Container } from 'bloomer';
+
+
+
+
+
 const fetch = require('node-fetch');
 //const clientID = `jxpavrW-66I3Obpstl8qYA`; //our yelp API client id       
 const apiKey=`pm8o9ejAV8iA0lnYN8fK4lEKdh6nVH3foW1CB76vo0kVN9IK6dqv6awLhlVSWpm81FeaXAgGyEOnycrvc6HdXlPtbcQv7vC1wvOjkJ4Ei7LLrhvH-K3xQHtxafbWXXYx`; //our yelp api key    
@@ -83,6 +89,7 @@ class App extends Component {
     return (
       <Router basename = { process.env.PUBLIC_URL }>
         <div className="App">
+          <MenuBar />
           <Header />
           <Route path="/" strict render={(props) => (
             <Container>
