@@ -47,7 +47,7 @@ export default class Search extends Component {
             <Box>
                 <form onSubmit={this.submit}>
                     <Field>
-                        <Label>Radius</Label>
+                        <Label>Search Term</Label>
                         <Control>
                             <Input name="term" type="text" placeholder="Seach Term" onChange={this.updateSearch}></Input>
                         </Control>
