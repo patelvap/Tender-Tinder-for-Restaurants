@@ -62,6 +62,8 @@ export default class Search extends Component {
                         <Control>
                             <Input name="limit" type="text" placeholder="Limit" onChange={this.updateSearch}></Input>
                         </Control>
+                    </Field>
+                    <Field>
                         <Button isColor='primary' type="submit">Search</Button>
                     </Field>
                 </form>
