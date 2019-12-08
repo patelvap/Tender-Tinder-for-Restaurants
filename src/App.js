@@ -4,7 +4,7 @@ import Header from './components/Header';
 import Search from './components/Search';
 import MenuBar from './components/Menubar';
 import './App.css';
-import { Container } from 'bloomer';
+import { Container, Box } from 'bloomer';
 
 
 
@@ -53,7 +53,7 @@ class App extends Component {
         if (!checkOffset) { queryString += `&offset=${offset}` };
         if (!checkLimit) { queryString += `&limit=${limit}` };
     }
-    
+    console.log(queryString)
     fetch(`https://cors-anywhere.herokuapp.com/${queryString}`, {
           headers: {'Authorization': `Bearer ${apiKey}`},
           'Content-Type': 'application/json',
