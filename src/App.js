@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Header from './components/Header';
 import Search from './components/Search';
-import MenuBar from './components/Menubar/Menubar';
+import MenuBar from './components/Menubar';
 import './App.css';
 import { Container } from 'bloomer';
 
