@@ -31,7 +31,7 @@ class App extends Component {
   }
 
   getTargets = (latitude, longitude, categories, radius, term, offset, limit) => {
-    let queryString = `https://api.yelp.com/v3/business/seach?`;
+    let queryString = `https://api.yelp.com/v3/businesses/search?`;
 
     //checks for parameters empty or undefined
     const checkLat = (latitude === undefined || latitude === '');
@@ -53,14 +53,13 @@ class App extends Component {
         if (!checkOffset) { queryString += `&offset=${offset}` };
         if (!checkLimit) { queryString += `&limit=${limit}` };
     }
-    console.log(queryString);
     
     fetch(`https://cors-anywhere.herokuapp.com/${queryString}`, {
-          headers: {'Authorization': 'Bearer ' + apiKey},
+          headers: {'Authorization': `Bearer ${apiKey}`},
           'Content-Type': 'application/json',
           'Accept': 'application/json'
     })
-      .then(response => {response.json(); console.log(response);})
+      .then(response => response.json())
       .then(data => {
           this.setState({
               results: data,
