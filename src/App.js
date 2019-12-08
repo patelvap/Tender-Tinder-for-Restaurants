@@ -2,13 +2,9 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Header from './components/Header';
 import Search from './components/Search';
-import MenuBar from './components/Menubar';
+import MenuBar from './components/Menubar/Menubar';
 import './App.css';
-import { Container, Box } from 'bloomer';
-
-
-
-
+import { Container } from 'bloomer';
 
 const fetch = require('node-fetch');
 //const clientID = `jxpavrW-66I3Obpstl8qYA`; //our yelp API client id       
@@ -71,6 +67,7 @@ class App extends Component {
               offset: offset,
               limit: limit
           })
+          console.log(data);
       })
       .catch(() => {
           this.setState({

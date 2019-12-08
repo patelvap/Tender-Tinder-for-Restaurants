@@ -30,11 +30,10 @@ export default class Search extends Component {
                 longitude: position.coords.longitude,
             });
         }))
-        console.log(this.state.latitude, this.state.longitude);
         this.props.history.push(`latitude=${this.state.latitude}&
                                 longitude=${this.state.longitude}&
                                 categories=${this.state.categories}&
-                                radius==${this.state.radius}&
+                                radius=${this.state.radius}&
                                 term=${this.state.term}&
                                 offset=${this.state.offset}&
                                 limit=${this.state.limit}`);
@@ -46,7 +45,7 @@ export default class Search extends Component {
         return (
             <Box>
                 <form onSubmit={this.submit}>
-                    <Field>
+                    <Field isHorizontal>
                         <Label>Search Term</Label>
                         <Control>
                             <Input name="term" type="text" placeholder="Seach Term" onChange={this.updateSearch}></Input>
@@ -63,6 +62,8 @@ export default class Search extends Component {
                         <Control>
                             <Input name="limit" type="text" placeholder="Limit" onChange={this.updateSearch}></Input>
                         </Control>
+                    </Field>
+                    <Field>
                         <Button isColor='primary' type="submit">Search</Button>
                     </Field>
                 </form>
