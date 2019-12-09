@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import { Card, CardImage, Image, CardContent } from 'bloomer';
-import { Content } from 'bloomer/lib/elements/Content';
+import { Card, CardImage, Image, CardContent, Media, MediaContent, Title, Content } from 'bloomer';
 
 class RestaurantCard extends Component {
     constructor(props) {
@@ -13,7 +12,6 @@ class RestaurantCard extends Component {
             address: '',
             distance: '',
             category: '', //primary category for now
-            closed: '',
             price: '',
             rating: ''
         }
@@ -43,4 +41,4 @@ class RestaurantCard extends Component {
     }
 }
 
-export default Card;
+export default RestaurantCard;

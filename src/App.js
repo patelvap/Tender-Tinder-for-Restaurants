@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Search from './components/Search';
 import MenuBar from './components/Menubar';
 import Popup from './components/Popup';
+import Results from './components/Results';
 import './App.css';
 import { Container } from 'bloomer';
 
@@ -108,6 +109,7 @@ class App extends Component {
           <Route path="/" strict render={(props) => (
             <Container>
               <Search getTargets={this.getTargets} {...props} />
+              <Results results={this.state.results.businesses} />
             </Container>
           )} />
           <div id="loginPopup">

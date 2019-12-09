@@ -2,7 +2,7 @@ import React from 'react'
 import { Container, Label, Column } from 'bloomer';
 import RestaurantCard from './RestaurantCard';
 
-export const Results = ({ results }) => {
+const Results = ({ results }) => {
     if (results === 'none' || results === undefined) {
         return (null);
     }
@@ -25,11 +25,16 @@ export const Results = ({ results }) => {
                         name={result.name}
                         imageURL={result.image_url}
                         phone={result.phone}
-                        address={result.location.address1}
-                        distance={result.distance} 
+                        address={result.location.display_address}
+                        distance={result.distance/1609.344}
+                        category={result.categories[0].title}
+                        price={result.price}
+                        rating={result.rating}
                     />
-                )
+                );
             })}
         </Column>
     );
 }
+
+export default Results;
