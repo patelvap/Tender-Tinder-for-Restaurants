@@ -31,6 +31,7 @@
   bottom: 0;
   margin: auto;
   background-color: rgba(0,0,0, 0.5);
+
 }
 .popup_inner {
   position: absolute;
@@ -40,4 +41,6 @@
   bottom: 25%;
   margin: auto;
   background: white;
+  border-radius: 25px;
+  border: 2px solid #282c34;
 }
