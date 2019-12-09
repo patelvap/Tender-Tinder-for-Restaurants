@@ -34,8 +34,8 @@ export default class Popup extends React.Component {
                         </Control>
                     </Field>
                     <Field isGrouped>
-                        <Control><Button isColor='primary'>Log In</Button></Control>
-                        <Control><Button isColor='primary' type='submit' isLink onClick={this.props.closePopup}>Cancel</Button></Control>
+                        <Control><Button isSize="large" isColor='primary'>Log In</Button></Control>
+                        <Control><Button isSize="large" isColor='primary' type='submit' isLink onClick={this.props.closePopup}>Cancel</Button></Control>
                     </Field>
                 </form>
             </Box>

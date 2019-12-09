@@ -5,7 +5,7 @@ import Search from './components/Search';
 import MenuBar from './components/Menubar';
 import Popup from './components/Popup';
 import './App.css';
-import { Container, Button } from 'bloomer';
+import { Container } from 'bloomer';
 
 const fetch = require('node-fetch');
 //const clientID = `jxpavrW-66I3Obpstl8qYA`; //our yelp API client id       
