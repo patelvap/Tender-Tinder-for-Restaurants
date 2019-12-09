@@ -98,6 +98,7 @@ class App extends Component {
         <div className="App">
           <MenuBar loginPopup={this.togglePopup.bind(this)}/>
           <Header />
+          <br></br>
           <Route path="/" strict render={(props) => (
             <Container>
               <Search getTargets={this.getTargets} {...props} />
