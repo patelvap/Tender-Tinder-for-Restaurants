@@ -30,7 +30,7 @@ export default class Popup extends React.Component {
                     <Field isHorizontal>
                         <Label isSize="large">Password:</Label>
                         <Control>
-                            <Input name="radius" type="text" placeholder="Password"></Input>
+                            <Input name="radius" type="password" placeholder="Password"></Input>
                         </Control>
                     </Field>
                     <Field isGrouped>
