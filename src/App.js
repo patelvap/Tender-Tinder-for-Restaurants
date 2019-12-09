@@ -51,13 +51,13 @@ class App extends Component {
     }
     else {
         queryString += `latitude=${latitude}&longitude=${longitude}`;
-        if (!checkCats) { queryString += `&categories=${categories}` };
-        if (!checkRad) { queryString += `&radius=${radius}` };
-        if (!checkSearch) { queryString += `&term=${term}` };
-        if (!checkOffset) { queryString += `&offset=${offset}` };
-        if (!checkLimit) { queryString += `&limit=${limit}` };
+        if (!checkCats) { queryString += `&categories=${categories}` }
+        if (!checkRad) { queryString += `&radius=${radius}` }
+        if (!checkSearch) { queryString += `&term=${term}` }
+        if (!checkOffset) { queryString += `&offset=${offset}` }
+        if (!checkLimit) { queryString += `&limit=${limit}` }
     }
-    console.log(queryString)
+
     fetch(`https://cors-anywhere.herokuapp.com/${queryString}`, {
           headers: {'Authorization': `Bearer ${apiKey}`},
           'Content-Type': 'application/json',
@@ -75,7 +75,6 @@ class App extends Component {
               offset: offset,
               limit: limit
           })
-          console.log(data);
       })
       .catch(() => {
           this.setState({
