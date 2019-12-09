@@ -3,8 +3,9 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Header from './components/Header';
 import Search from './components/Search';
 import MenuBar from './components/Menubar';
+import Popup from './components/Popup';
 import './App.css';
-import { Container } from 'bloomer';
+import { Container, Button } from 'bloomer';
 
 const fetch = require('node-fetch');
 //const clientID = `jxpavrW-66I3Obpstl8qYA`; //our yelp API client id       
@@ -14,6 +15,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
+        showPopup: false,
         results : 'none', //array of returned items from api call
 
         latitude: '', //(required)
@@ -22,10 +24,10 @@ class App extends Component {
         radius: '', //(optional)
         term: '', //(optional)
         offset: '', //(optional)
-        limit : '', //(optional)
+        limit : '', //(optional)\
     }
   }
-
+  
   getTargets = (latitude, longitude, categories, radius, term, offset, limit) => {
     let queryString = `https://api.yelp.com/v3/businesses/search?`;
 
@@ -83,17 +85,33 @@ class App extends Component {
       });
   }
 
+  // function that controls the login popup
+  togglePopup() {
+    this.setState({
+      showPopup: !this.state.showPopup
+    });
+  }
+
   render() {
     return (
       <Router basename = { process.env.PUBLIC_URL }>
         <div className="App">
-          <MenuBar />
+          <MenuBar loginPopup={this.togglePopup.bind(this)}/>
           <Header />
           <Route path="/" strict render={(props) => (
             <Container>
               <Search getTargets={this.getTargets} {...props} />
             </Container>
           )} />
+          <div id="loginPopup">
+            {this.state.showPopup ? 
+                <Popup
+                  text='Login:'
+                  closePopup={this.togglePopup.bind(this)}
+                />
+                : null
+            }
+          </div>
         </div>
       </Router>
     )
