@@ -17,7 +17,7 @@ class App extends Component {
     super();
     this.state = {
         showPopup: false,
-        loggedIn: "nullman",  //string username of logged in user, default null
+        loggedIn: null,  //string username of logged in user, default null
         results : 'none', //array of returned items from api call
 
         latitude: '', //(required)
