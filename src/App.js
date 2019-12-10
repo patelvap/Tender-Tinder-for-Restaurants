@@ -141,6 +141,11 @@ class App extends Component {
               </Columns>
             </Container>
           )} />
+          <Route path="/news" strict render={(props) => (
+            <Container>
+              <h1>potato</h1>
+            </Container>
+          )} />
           <div id="loginPopup">
             {this.state.showPopup ? 
                 <Popup

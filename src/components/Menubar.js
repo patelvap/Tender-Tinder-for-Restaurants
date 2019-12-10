@@ -28,19 +28,19 @@ export default class MenuBar extends React.Component{
             </NavbarItem>
             <NavbarItem>
             <NavbarLink>
-            <a href="#news">News</a>
+            <a href="news">News</a>
           
                 </NavbarLink>
             </NavbarItem>
             <NavbarItem>
             <NavbarLink>
-            <a href="#contact">Contact</a>
+            <a href="contact">Contact</a>
           
                 </NavbarLink>
             </NavbarItem>
             <NavbarItem>
             <NavbarLink>
-            <a href="#about">About</a>
+            <a href="about">About</a>
                 </NavbarLink>
             </NavbarItem>
             <NavbarEnd>
