@@ -36,13 +36,13 @@ export default class Search extends Component {
                 longitude: position.coords.longitude,
             });
         }))
-        this.props.history.push(`latitude=${this.state.latitude}&
-                                longitude=${this.state.longitude}&
-                                categories=${this.state.categories}&
-                                radius=${this.state.radius}&
-                                term=${this.state.term}&
-                                offset=${this.state.offset}&
-                                limit=${this.state.limit}`);
+        // this.props.history.push(`latitude=${this.state.latitude}&
+        //                         longitude=${this.state.longitude}&
+        //                         categories=${this.state.categories}&
+        //                         radius=${this.state.radius}&
+        //                         term=${this.state.term}&
+        //                         offset=${this.state.offset}&
+        //                         limit=${this.state.limit}`);
         const {latitude, longitude, categories, radius, term, offset, limit } = this.state;
         this.props.getTargets(latitude, longitude, categories, radius, term, offset, limit);
     }
