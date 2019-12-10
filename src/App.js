@@ -99,6 +99,12 @@ class App extends Component {
     });
   }
 
+  handleUserDone(e) {
+    console.log(e.target.getAttribute('status'))
+    console.log(e.target.getAttribute('username'))
+    console.log(e.target.getAttribute('password'))
+  }
+
   render() {
     return (
       <Router basename = { process.env.PUBLIC_URL }>
@@ -117,8 +123,8 @@ class App extends Component {
           <div id="loginPopup">
             {this.state.showPopup ? 
                 <Popup
-                  text='Login:'
                   closePopup={this.togglePopup.bind(this)}
+                  handleUserDone={this.handleUserDone.bind(this)}
                 />
                 : null
             }
