@@ -27,12 +27,7 @@ export default class MenuBar extends React.Component{
                 </NavbarLink>
             </NavbarItem>
            
-            <NavbarItem>
-            <NavbarLink>
-            <a href="news">News</a>
-          
-                </NavbarLink>
-            </NavbarItem>
+            
             <NavbarItem>
             <NavbarLink>
             <a href="search">Search</a>
