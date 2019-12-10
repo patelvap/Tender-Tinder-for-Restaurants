@@ -6,7 +6,7 @@ import MenuBar from './components/Menubar';
 import Popup from './components/Popup';
 import Results from './components/Results';
 import './App.css';
-import { Container } from 'bloomer';
+import { Container, Button, Columns } from 'bloomer';
 
 const fetch = require('node-fetch');
 //const clientID = `jxpavrW-66I3Obpstl8qYA`; //our yelp API client id       
@@ -109,7 +109,9 @@ class App extends Component {
           <Route path="/" strict render={(props) => (
             <Container>
               <Search getTargets={this.getTargets} {...props} />
-              <Results results={this.state.results.businesses} />
+              <Columns isCentered>
+                <Results results={this.state.results.businesses} />
+              </Columns>
             </Container>
           )} />
           <div id="loginPopup">

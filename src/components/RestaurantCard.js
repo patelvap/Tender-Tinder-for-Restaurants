@@ -4,7 +4,7 @@ import { Card, CardImage, Image, CardContent, Media, MediaContent, Title, Conten
 class RestaurantCard extends Component {
     constructor(props) {
         super(props)
-
+        
         this.state = {
             name: '',
             imageURL: '',
@@ -16,12 +16,12 @@ class RestaurantCard extends Component {
             rating: ''
         }
     }
-
+    
     render() {
         return (
             <Card>
                 <CardImage>
-                    <Image isRatio='4:3' src={this.props.imageURL} />
+                    <Image src={this.props.imageURL} />
                 </CardImage>
                 <CardContent>
                     <Media>
@@ -29,16 +29,16 @@ class RestaurantCard extends Component {
                             <Title isSize={4}>{this.props.name}</Title>
                             {/*<Subtitle isSize={6}>{this.props.categories}</Subtitle>*/}
                         </MediaContent>
-                    </Media>
-                    <Content>
-                        {this.props.rating}-{this.props.price}-{this.props.categories}
+                     </Media>
+                     <Content>
+                        {this.props.rating} - {this.props.price} - {this.props.category}
                         <br/>
-                        {this.props.distance}-{this.props.address}
+                        {this.props.distance.toFixed(2)} mi. - {this.props.address}
                     </Content>
                 </CardContent>
             </Card>
-        )
+            )
+        }
     }
-}
-
-export default RestaurantCard;
+    
+    export default RestaurantCard;

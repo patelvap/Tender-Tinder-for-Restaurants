@@ -18,14 +18,14 @@ const Results = ({ results }) => {
     }
 
     return (
-        <Column>
+        <Column isSize='1/2'>
             {results.map((result) => {
                 return (
                     <RestaurantCard
                         name={result.name}
                         imageURL={result.image_url}
                         phone={result.phone}
-                        address={result.location.display_address}
+                        address={result.location.display_address.join(' ')}
                         distance={result.distance/1609.344}
                         category={result.categories[0].title}
                         price={result.price}
