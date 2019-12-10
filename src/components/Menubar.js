@@ -34,7 +34,7 @@ export default class MenuBar extends React.Component{
             </NavbarItem>
             <NavbarItem>
             <NavbarLink>
-            <a href="contact">Contact</a>
+            <a href="search">Search</a>
           
                 </NavbarLink>
             </NavbarItem>

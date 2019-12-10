@@ -133,7 +133,7 @@ class App extends Component {
           />
           <Header />
           <br></br>
-          <Route path="/" strict render={(props) => (
+          <Route path="/search" strict render={(props) => (
             <Container>
               <Search getTargets={this.getTargets} {...props} />
               <Columns isCentered>
