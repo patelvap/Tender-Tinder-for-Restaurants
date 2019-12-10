@@ -26,6 +26,12 @@ class App extends Component {
         offset: '', //(optional)
         limit : '', //(optional)\
     }
+    navigator.geolocation.getCurrentPosition((position => {
+      this.setState({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+      });
+    }))
   }
   
   getTargets = (latitude, longitude, categories, radius, term, offset, limit) => {

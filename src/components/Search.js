@@ -13,6 +13,12 @@ export default class Search extends Component {
             offset: '', //(optional)
             limit : '', //(optional)
         }
+        navigator.geolocation.getCurrentPosition((position => {
+            this.setState({
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude,
+            });
+        }))
     }
 
     updateSearch = (e) => {
