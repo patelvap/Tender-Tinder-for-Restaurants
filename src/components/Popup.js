@@ -13,16 +13,39 @@ export default class Popup extends React.Component {
             isSignUp:false,
             textInfo: "Log In",
             usernameBox: "",
-            passBox: ""
+            passBox: "",
+            switchModeText: "Don't have an account?",
+            modeButton: "Sign Up"
         }
     }
 
+    //monitors UN and PW boxes
     updateCred = (e) => {
         e.preventDefault();
         if (e.target.getAttribute('name')=="username") {
             this.setState({usernameBox: e.target.value})
         } else if (e.target.getAttribute('name')=="password") {
             this.setState({passBox: e.target.value})
+        }
+    }
+
+    //monitors mode button
+    updateMode = (e) => {
+        e.preventDefault();
+        if (e.target.getAttribute('status')=="Sign Up") {
+            this.setState({
+                modeButton: "Log In",
+                switchModeText: "Already have an account?",
+                textInfo: "Sign Up",
+                isSignUp: true
+            })
+        } else if (e.target.getAttribute('status')=="Log In") {
+            this.setState({
+                modeButton: "Sign Up",
+                switchModeText: "Don't have an account?",
+                textInfo: "Log In",
+                isSignUp: false
+            })
         }
     }
 
@@ -53,6 +76,15 @@ export default class Popup extends React.Component {
                         <Control><Button isSize="large" isColor='primary' type='submit' isLink onClick={this.props.closePopup}>Cancel</Button></Control>
                     </Field>
                 </form>
+            </Box>
+            <br></br>
+            <Box>
+                <h2 class="subtitle">{this.state.switchModeText}</h2>
+                <Field>
+                    <Control>
+                        <Button isSize="large" isColor='primary' status={this.state.modeButton} onClick={this.updateMode}>{this.state.modeButton}</Button>
+                    </Control>
+                </Field>
             </Box>
           
           </div>
