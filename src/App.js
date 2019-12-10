@@ -143,7 +143,7 @@ class App extends Component {
               </Columns>
             </Container>
           )} />
-          <Route path="/news" strict render={(props) => (
+          <Route path="/reviews" strict render={(props) => (
             <Container>
               <Review getTargets={this.getTargets} {...props} />
               <Columns isCentered></Columns>

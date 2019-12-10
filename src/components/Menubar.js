@@ -36,7 +36,7 @@ export default class MenuBar extends React.Component{
             </NavbarItem>
             <NavbarItem>
             <NavbarLink>
-            <a href="about">About</a>
+            <a href="reviews">About</a>
                 </NavbarLink>
             </NavbarItem>
             <NavbarEnd>
