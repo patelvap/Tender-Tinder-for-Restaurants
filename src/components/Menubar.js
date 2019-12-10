@@ -26,12 +26,7 @@ export default class MenuBar extends React.Component{
             <Button isColor='blue' onClick={this.props.loginPopup}>Login</Button>
                 </NavbarLink>
             </NavbarItem>
-            <NavbarItem>
-            <NavbarLink>
-            <a href="#news">News</a>
-          
-                </NavbarLink>
-            </NavbarItem>
+           
             <NavbarItem>
             <NavbarLink>
             <a href="#contact">Contact</a>

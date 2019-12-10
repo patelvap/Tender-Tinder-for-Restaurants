@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Box, Field, Label, Control, Input, Button, Container } from 'bloomer';
+import axios from 'axios';
 
 //testing login popup:
 
@@ -22,9 +23,9 @@ export default class Popup extends React.Component {
     //monitors UN and PW boxes
     updateCred = (e) => {
         e.preventDefault();
-        if (e.target.getAttribute('name')=="username") {
+        if (e.target.getAttribute('name')==="username") {
             this.setState({usernameBox: e.target.value})
-        } else if (e.target.getAttribute('name')=="password") {
+        } else if (e.target.getAttribute('name')==="password") {
             this.setState({passBox: e.target.value})
         }
     }
@@ -32,14 +33,14 @@ export default class Popup extends React.Component {
     //monitors mode button
     updateMode = (e) => {
         e.preventDefault();
-        if (e.target.getAttribute('status')=="Sign Up") {
+        if (e.target.getAttribute('status')==="Sign Up") {
             this.setState({
                 modeButton: "Log In",
                 switchModeText: "Already have an account?",
                 textInfo: "Sign Up",
                 isSignUp: true
             })
-        } else if (e.target.getAttribute('status')=="Log In") {
+        } else if (e.target.getAttribute('status')==="Log In") {
             this.setState({
                 modeButton: "Sign Up",
                 switchModeText: "Don't have an account?",
@@ -47,6 +48,21 @@ export default class Popup extends React.Component {
                 isSignUp: false
             })
         }
+    }
+
+    //Submit Handler
+    submitHandler = async (e) => {
+        console.log("submit");
+
+        e.preventDefault();
+        try {
+            const result = await axios({
+              method: 'get',
+              url: 'http://localhost:3000/',
+            });
+          } catch (error) {
+            console.log(error);
+          }
     }
 
     render() {
@@ -58,7 +74,7 @@ export default class Popup extends React.Component {
             <br></br>
             <h1 class="title">{this.state.textInfo}:</h1>
             <Box>
-                <form onSubmit={this.submit}>
+                <form onSubmit={this.submitHandler}>
                     <Field isHorizontal>
                         <Label isSize="large">Username:</Label>
                         <Control>
@@ -72,8 +88,8 @@ export default class Popup extends React.Component {
                         </Control>
                     </Field>
                     <Field isGrouped>
-                        <Control><Button isSize="large" isColor='primary' status={this.state.textInfo} username={this.state.usernameBox} password={this.state.passBox} onClick={this.props.handleUserDone}>{this.state.textInfo}</Button></Control>
-                        <Control><Button isSize="large" isColor='primary' type='submit' isLink onClick={this.props.closePopup}>Cancel</Button></Control>
+                        <Control><Button isSize="large" isColor='primary' type='submit' status={this.state.textInfo} username={this.state.usernameBox} password={this.state.passBox} onClick={this.props.handleUserDone}>{this.state.textInfo}</Button></Control>
+                        <Control><Button isSize="large" isColor='primary' type='button' isLink onClick={this.props.closePopup}>Cancel</Button></Control>
                     </Field>
                 </form>
             </Box>
