@@ -17,6 +17,7 @@ class App extends Component {
     super();
     this.state = {
         showPopup: false,
+        loggedIn: null,  //string username of logged in user, default null
         results : 'none', //array of returned items from api call
 
         latitude: '', //(required)
@@ -103,6 +104,7 @@ class App extends Component {
     console.log(e.target.getAttribute('status'))
     console.log(e.target.getAttribute('username'))
     console.log(e.target.getAttribute('password'))
+
   }
 
   render() {
