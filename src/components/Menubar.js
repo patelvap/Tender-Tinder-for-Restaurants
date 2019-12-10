@@ -11,6 +11,14 @@ export default class MenuBar extends React.Component{
     }
 
     render() {
+        let accountSettings=null
+        if (this.props.loggedIn!=null) {
+            accountSettings=
+            (<NavbarItem>
+                <Button isColor='blue' user={this.props.loggedIn} onClick={this.props.handleSettings}>{this.props.loggedIn}'s Settings</Button>
+            </NavbarItem>)
+        }
+
         return (
             <Navbar style={{ border: 'solid 1px #00D1B2', margin: '0' }}>
             <NavbarItem>
@@ -36,11 +44,7 @@ export default class MenuBar extends React.Component{
                 </NavbarLink>
             </NavbarItem>
             <NavbarEnd>
-                <NavbarItem>
-                    <NavbarLink>
-                        <a href="#test">Test</a>
-                    </NavbarLink>
-                </NavbarItem>
+                {accountSettings}
             </NavbarEnd>
           </Navbar>
         );

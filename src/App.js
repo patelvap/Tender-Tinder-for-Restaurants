@@ -17,7 +17,7 @@ class App extends Component {
     super();
     this.state = {
         showPopup: false,
-        loggedIn: null,  //string username of logged in user, default null
+        loggedIn: "nullman",  //string username of logged in user, default null
         results : 'none', //array of returned items from api call
 
         latitude: '', //(required)
@@ -100,6 +100,11 @@ class App extends Component {
     });
   }
 
+  //function that handles account settings button press
+  handleSettings(e){
+    console.log(e.target.getAttribute('user')+" tried pressing settings")
+  }
+
   handleUserDone(e) {
     console.log(e.target.getAttribute('status'))
     console.log(e.target.getAttribute('username'))
@@ -111,7 +116,7 @@ class App extends Component {
     return (
       <Router basename = { process.env.PUBLIC_URL }>
         <div className="App">
-          <MenuBar loginPopup={this.togglePopup.bind(this)}/>
+          <MenuBar loggedIn={this.state.loggedIn} handleSettings={this.handleSettings.bind(this)} loginPopup={this.togglePopup.bind(this)}/>
           <Header />
           <br></br>
           <Route path="/" strict render={(props) => (
