@@ -44,3 +44,27 @@
   border-radius: 25px;
   border: 2px solid #282c34;
 }
+
+.settingspopup {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  background-color: rgba(0,0,0, 0.5);
+
+}
+.settingspopup_inner {
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  top: 10%;
+  bottom: 10%;
+  margin: auto;
+  background: white;
+  border-radius: 25px;
+  border: 2px solid #282c34;
+}

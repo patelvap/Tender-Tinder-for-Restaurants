@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Search from './components/Search';
 import MenuBar from './components/Menubar';
 import Popup from './components/Popup';
+import Settings from './components/Settings'
 import Results from './components/Results';
 import './App.css';
 import { Container, Button, Columns } from 'bloomer';
@@ -100,9 +101,18 @@ class App extends Component {
     });
   }
 
+  // function that controls the login popup
+  toggleSettings() {
+    this.setState({
+      showSettings: !this.state.showSettings
+    });
+  }
+
+
   //function that handles account settings button press
   handleSettings(e){
     console.log(e.target.getAttribute('user')+" tried pressing settings")
+    this.toggleSettings();
   }
 
   handleUserDone(e) {
@@ -116,7 +126,11 @@ class App extends Component {
     return (
       <Router basename = { process.env.PUBLIC_URL }>
         <div className="App">
-          <MenuBar loggedIn={this.state.loggedIn} handleSettings={this.handleSettings.bind(this)} loginPopup={this.togglePopup.bind(this)}/>
+          <MenuBar 
+            loggedIn={this.state.loggedIn} 
+            handleSettings={this.handleSettings.bind(this)} 
+            loginPopup={this.togglePopup.bind(this)}
+          />
           <Header />
           <br></br>
           <Route path="/" strict render={(props) => (
@@ -132,6 +146,15 @@ class App extends Component {
                 <Popup
                   closePopup={this.togglePopup.bind(this)}
                   handleUserDone={this.handleUserDone.bind(this)}
+                />
+                : null
+            }
+          </div>
+          <div id="settingsPopup">
+            {this.state.showSettings ? 
+                <Settings
+                  closeSettings={this.toggleSettings.bind(this)}
+                  loggedIn={this.state.loggedIn}
                 />
                 : null
             }
