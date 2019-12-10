@@ -6,8 +6,10 @@ import MenuBar from './components/Menubar';
 import Popup from './components/Popup';
 import Settings from './components/Settings'
 import Results from './components/Results';
+import Reviews from './components/Reviews';
 import './App.css';
 import { Container, Button, Columns } from 'bloomer';
+import Review from './components/Reviews';
 
 const fetch = require('node-fetch');
 //const clientID = `jxpavrW-66I3Obpstl8qYA`; //our yelp API client id       
@@ -143,7 +145,8 @@ class App extends Component {
           )} />
           <Route path="/news" strict render={(props) => (
             <Container>
-              <h1>potato</h1>
+              <Review getTargets={this.getTargets} {...props} />
+              <Columns isCentered></Columns>
             </Container>
           )} />
           <div id="loginPopup">
