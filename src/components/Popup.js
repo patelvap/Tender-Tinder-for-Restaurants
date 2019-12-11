@@ -89,7 +89,7 @@ export default class Popup extends React.Component {
                     textInfo: "Log In",
                     isSignUp: false
                 })
-                this.setState({errorMessage: ""})
+                this.setState({errorMessage: "Thanks for signing up, you may now log in!"})
 
               } catch (error) {
                 console.log(error);
