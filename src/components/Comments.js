@@ -1,6 +1,18 @@
 import React, { Component } from "react";
-import { Column, Content, Box } from "bloomer";
-import CommentCard from "./CommentCard";
+import { Card,
+  CardImage,
+  Image,
+  CardContent,
+  Media,
+  MediaContent,
+  Title,
+  Content,
+  Box,
+  Button,
+  Icon,
+  Container,
+  Columns,
+  Column } from "bloomer";
 import axios from "axios";
 
 export default class Review extends Component {
@@ -53,14 +65,37 @@ export default class Review extends Component {
         reload: 1
       });
     }
+    if(this.state.users.length ==0) {
+      return(
+        <Box> 
+          <Title>
+            No Reviews Have Yet Been Uploaded. Be the first to Comment!
+          </Title>
+        </Box>
 
-    return (
-      <Box>
-        <Column isSize="1/2">
-          <Content>{this.state.users[0]}</Content>
-          <Content>{this.state.reviews[0]}</Content>
-        </Column>
-      </Box>
-    );
+      )
+    }
+    
+    for( let i= 0; i<this.state.users.length; i++){
+      return (
+        <Card>
+        <CardContent>
+          <Media>
+            <MediaContent>
+              <Title hasTextAlign isSize={4}>
+                {this.state.users[i] + " says:"}
+              </Title>
+            </MediaContent>
+          </Media>
+          <Content>
+            <Title>
+            {this.state.reviews[i]}
+            </Title>
+          </Content>
+        </CardContent>
+      </Card>
+      );
+    }
+    
   }
 }
