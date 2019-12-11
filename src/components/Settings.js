@@ -5,7 +5,7 @@ import { Box, Field, Label, Control, Input, Button, Container } from 'bloomer';
 
 
 
-export default class Popup extends React.Component {
+export default class Popup extends Component {
     constructor() {
         super();
         this.state={
