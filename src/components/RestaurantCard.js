@@ -24,12 +24,10 @@ class RestaurantCard extends Component {
                     <Image src={this.props.imageURL} />
                 </CardImage>
                 <CardContent>
-                    <Media>
-                        <MediaContent>
-                            <Title hasTextAlign isSize={4}>{this.props.name}</Title>
-                            {/*<Subtitle isSize={6}>{this.props.categories}</Subtitle>*/}
-                        </MediaContent>
-                     </Media>
+                    <MediaContent>
+                        <Title hasTextAlign='centered' isSize={4}>{this.props.name}</Title>
+                        {/*<Subtitle isSize={6}>{this.props.categories}</Subtitle>*/}
+                     </MediaContent>
                      <Content>
                         {this.props.rating}<Icon className='fas fa-star'></Icon> - {this.props.price} - {this.props.category}
                         <br/>
