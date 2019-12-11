@@ -27,26 +27,23 @@ export default class Review extends Component {
          pubRoot.get('/reviews')
         .then(function (response) {
         //    console.log("got the data");
-           console.log(response.data.result)
-         this.data = response.data
-         this.render()
+           //console.log(response.data.result)
+         this.setState({events:response.data.result})
+         console.log(this.state.events)
           })
           .catch(function (error) {
         });
-      }
+    }
 
-      print(a) {
-        console.log(a.result)
-      }
-    render() {
-        this.getData()
-        
+    render() {    
+      this.getData()
+    
         return (
             <Box>
             <Column isSize="1/2">
                 <Content>
                     
-            {this.data}
+            {this.state.events}
           </Content>
           </Column>
         </Box>
