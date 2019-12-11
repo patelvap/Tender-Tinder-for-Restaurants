@@ -2,19 +2,16 @@ import React from "react";
 //import ReactDOM from 'react-dom';
 import {
   Navbar,
-  NavbarBrand,
   NavbarItem,
-  Icon,
-  NavbarBurger,
   NavbarMenu,
   NavbarStart,
-  NavbarLink,
-  NavbarDropdown,
-  NavbarDivider,
   NavbarEnd,
-  Field,
-  Control,
-  Button
+  Button,
+  HeroFooter,
+  Hero,
+  HeroBody,
+  Container,
+  Title
 } from "bloomer";
 //import './Menubar.css'
 
@@ -40,27 +37,37 @@ export default class MenuBar extends React.Component {
     }
 
     return (
-      <Navbar style={{ border: "solid 1px #00D1B2", margin: "0" }}>
-        <NavbarItem>
-          <NavbarLink>
-            <Button isColor="blue" onClick={this.props.loginPopup}>
-              Login
-            </Button>
-          </NavbarLink>
-        </NavbarItem>
-
-        <NavbarItem>
-          <NavbarLink>
-            <a href="search">Search</a>
-          </NavbarLink>
-        </NavbarItem>
-        <NavbarItem>
-          <NavbarLink>
-            <a href="reviews">About</a>
-          </NavbarLink>
-        </NavbarItem>
-        <NavbarEnd>{accountSettings}</NavbarEnd>
-      </Navbar>
+      <Hero isColor="info" isSize="1/4">
+        <HeroBody>
+          <Container hasTextAlign="left">
+            <Title>Tender: Tinder Restaurant Edition</Title>
+          </Container>
+        </HeroBody>
+        <HeroFooter>
+          {" "}
+          <Navbar
+            style={{
+              marginLeft: "14%",
+              marginRight: "14%"
+            }}
+          >
+            <NavbarMenu isActive="true">
+              <NavbarStart>
+                <NavbarItem href="search">Search</NavbarItem>
+              </NavbarStart>
+              <NavbarEnd>
+                <NavbarItem href="about">About</NavbarItem>
+                <NavbarItem href="#">
+                  Account Settings{accountSettings}
+                </NavbarItem>
+                <NavbarItem onClick={this.props.loginPopup} href="#">
+                  Login
+                </NavbarItem>
+              </NavbarEnd>
+            </NavbarMenu>
+          </Navbar>
+        </HeroFooter>
+      </Hero>
     );
   }
 }
