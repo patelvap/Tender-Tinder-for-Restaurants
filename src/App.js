@@ -140,6 +140,7 @@ class App extends Component {
           <Route path="/search" strict render={(props) => (
             <Container>
               <Search getTargets={this.getTargets} {...props} />
+              <br></br>
               <Columns isCentered>
                 <Results results={this.state.results.businesses} />
               </Columns>
