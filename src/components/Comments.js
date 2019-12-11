@@ -44,7 +44,7 @@ export default class Review extends Component {
       .get("/reviews")
       .then(response => {
         for (let i = 0; i < response.data.result.length; i++) {
-          comb.push({ review: response.data.result[i].review, user: response.data.result[i].user })
+          comb.push({ review: response.data.result[i].review, user: response.data.result[i].username })
         }
         this.updateBoxes( comb).bind(this);
       })
