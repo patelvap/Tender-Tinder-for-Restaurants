@@ -1,2 +1,10 @@
 {
+  "users": {
+    "varunt": {
+      "passwordHash": "$2b$10$jVZXmn0MlHy9jthAPGcsHOksLKCeFA3p0wTmrZE4CMDYQGgysQ85m"
+    },
+    "test": {
+      "passwordHash": "$2b$10$pT34Po7ShjsH/ZgSzQT2Ke0D8biyY6n5S/w5qQYfx9JgMGfeLlmNy"
+    }
+  }
 }

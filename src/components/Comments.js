@@ -12,11 +12,11 @@ export default class Review extends Component {
           });
         
 
-
+        this.data = ""
         this.state = {
             review : "", //(required)
             username : "tenderboys", //(required)
-            data: this.getData()
+            events:"ffefe"
         }
     };
 
@@ -24,19 +24,29 @@ export default class Review extends Component {
         const pubRoot = new axios.create({
             baseURL: "http://localhost:3000/public"
           });
-        let {data} =   pubRoot.get('/reviews/review');
-        
-        //console.log(pubRoot.get('/reviews/'))
-        return {data};
+         pubRoot.get('/reviews')
+        .then(function (response) {
+        //    console.log("got the data");
+           console.log(response.data.result)
+         this.data = response.data
+         this.render()
+          })
+          .catch(function (error) {
+        });
       }
 
+      print(a) {
+        console.log(a.result)
+      }
     render() {
-        console.log(this.getData())
+        this.getData()
+        
         return (
             <Box>
             <Column isSize="1/2">
                 <Content>
-            {this.state.data.review}
+                    
+            {this.data}
           </Content>
           </Column>
         </Box>
