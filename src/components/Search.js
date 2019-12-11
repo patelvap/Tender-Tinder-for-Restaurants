@@ -46,7 +46,9 @@ export default class Search extends Component {
   };
 
   submit = e => {
-    if (e!=undefined) {e.preventDefault();}
+    if (e != undefined) {
+      e.preventDefault();
+    }
     navigator.geolocation.getCurrentPosition(position => {
       this.setState({
         latitude: position.coords.latitude,
@@ -99,11 +101,15 @@ export default class Search extends Component {
 
   //need to add categories in this - combo box
   render() {
-    if (!this.state.renderHasRun&&this.state.longitude!=""&&this.state.latitude!="") {
-      this.submit()
+    if (
+      !this.state.renderHasRun &&
+      this.state.longitude != "" &&
+      this.state.latitude != ""
+    ) {
+      this.submit();
       this.setState({
         renderHasRun: true
-      })
+      });
     }
     return (
       <Container>
