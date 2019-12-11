@@ -94,6 +94,18 @@ export default class Search extends Component {
     });
   }
 
+  handleRadius = (e) => {
+    e.preventDefault();
+    let rad = e.target.value*1609.344
+    if (rad>40000) {
+        rad=40000
+    }
+    this.setState({
+        radius: Math.floor(rad)
+    })
+  }
+
+
   //need to add categories in this - combo box
   render() {
     return (
@@ -128,7 +140,7 @@ export default class Search extends Component {
                         name="radius"
                         type="text"
                         placeholder="Radius"
-                        onChange={this.updateSearch}
+                        onChange={this.handleRadius}
                       ></Input>
                     </Control>
                   </PanelBlock>
