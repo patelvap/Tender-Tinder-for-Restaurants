@@ -86,6 +86,7 @@ export default class Popup extends React.Component {
                 this.props.setStateApp({
                     loggedIn: this.state.usernameBox
                 })
+                localStorage.setItem('loggedIn', this.state.usernameBox)
                 
                 console.log(this.props.loggedIn)
 

@@ -27,20 +27,39 @@ class App extends Component {
   constructor() {
     super();
     console.log("constructor running")
-    this.state = {
-      showPopup: false,
-      loggedIn: null, //string username of logged in user, default null
+    console.log(localStorage.getItem('loggedIn'))
+    if (localStorage.getItem('loggedIn')=="null") {
+      this.state={
+        showPopup: false,
+        loggedIn: null, //string username of logged in user, default null
+  
+        results: "none", //array of returned items from api call
+  
+        latitude: "", //(required)
+        longitude: "", //(required)
+        categories: "", //delimited strong of categories (optional)
+        radius: "", //(optional)
+        term: "", //(optional)
+        offset: "", //(optional)
+        limit: "" //(optional)\
+      }
+    } else {
+      this.state = {
+        showPopup: false,
+        loggedIn: localStorage.getItem('loggedIn'), //string username of logged in user, default null
+  
+        results: "none", //array of returned items from api call
+  
+        latitude: "", //(required)
+        longitude: "", //(required)
+        categories: "", //delimited strong of categories (optional)
+        radius: "", //(optional)
+        term: "", //(optional)
+        offset: "", //(optional)
+        limit: "" //(optional)\
+      };
+    }
 
-      results: "none", //array of returned items from api call
-
-      latitude: "", //(required)
-      longitude: "", //(required)
-      categories: "", //delimited strong of categories (optional)
-      radius: "", //(optional)
-      term: "", //(optional)
-      offset: "", //(optional)
-      limit: "" //(optional)\
-    };
     navigator.geolocation.getCurrentPosition(position => {
       this.setState({
         latitude: position.coords.latitude,
