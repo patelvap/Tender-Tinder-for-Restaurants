@@ -17,8 +17,8 @@ export default class Popup extends Component {
       
       
       return (
-        <Container className='settingspopup'>
-          <Container className='settingspopup_inner'>
+        <div className='settingspopup'>
+          <div className='settingspopup_inner'>
             <br></br>
             <h1 class="title">{this.props.loggedIn}'s Settings:</h1>
             <Box>
@@ -32,8 +32,8 @@ export default class Popup extends Component {
                 </Field>
             </Box>
           
-          </Container>
-        </Container>
+          </div>
+        </div>
       );
     }
 }

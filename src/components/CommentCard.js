@@ -16,7 +16,7 @@ import {
   Column
 } from "bloomer";
 
-class RestaurantCard extends Component {
+class CommentCard extends Component {
   constructor(props) {
     super(props);
 
@@ -32,7 +32,7 @@ class RestaurantCard extends Component {
     };
   }
 
-  render() {
+  rendjer() {
     return (
       <Card>
         <CardImage>
@@ -82,4 +82,3 @@ class RestaurantCard extends Component {
   }
 }
 
-export default RestaurantCard;

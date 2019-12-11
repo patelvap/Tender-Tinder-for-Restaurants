@@ -1,29 +1,20 @@
 import React, { Component } from "react";
 import {
-  Box,
-  Field,
   Label,
   Control,
   Input,
   Button,
   Panel,
-  PanelHeading,
-  Column,
-  Columns,
   Modal,
-  ModalClose,
   ModalCard,
   Container,
   ModalCardHeader,
   ModalCardBody,
-  Delete,
   ModalCardFooter,
-  ModalCardTitle,
-  Card
+  ModalCardTitle
 } from "bloomer";
 import { PanelBlock } from "bloomer/lib/components/Panel/PanelBlock";
 import { ModalBackground } from "bloomer/lib/components/Modal/ModalBackground";
-import { ModalContent } from "bloomer/lib/components/Modal/ModalContent";
 
 export default class Search extends Component {
   constructor() {
@@ -31,12 +22,13 @@ export default class Search extends Component {
     this.state = {
       latitude: "", //(required)
       longitude: "", //(required)
-      categories: "", //delimited strong of categories (optional)
+      categories: "restaurants", //delimited strong of categories (optional)
       radius: "", //(optional)
       term: "", //(optional)
       offset: "", //(optional)
       limit: "", //(optional)
-      isActive: false
+      isActive: false,
+      renderHasRun: false
     };
     navigator.geolocation.getCurrentPosition(position => {
       this.setState({
@@ -54,7 +46,7 @@ export default class Search extends Component {
   };
 
   submit = e => {
-    e.preventDefault();
+    if (e!=undefined) {e.preventDefault();}
     navigator.geolocation.getCurrentPosition(position => {
       this.setState({
         latitude: position.coords.latitude,
@@ -94,20 +86,25 @@ export default class Search extends Component {
     });
   }
 
-  handleRadius = (e) => {
+  handleRadius = e => {
     e.preventDefault();
-    let rad = e.target.value*1609.344
-    if (rad>40000) {
-        rad=40000
+    let rad = e.target.value * 1609.344;
+    if (rad > 40000) {
+      rad = 40000;
     }
     this.setState({
-        radius: Math.floor(rad)
-    })
-  }
-
+      radius: Math.floor(rad)
+    });
+  };
 
   //need to add categories in this - combo box
   render() {
+    if (!this.state.renderHasRun&&this.state.longitude!=""&&this.state.latitude!="") {
+      this.submit()
+      this.setState({
+        renderHasRun: true
+      })
+    }
     return (
       <Container>
         <Button onClick={this.changeActive.bind(this)}>
@@ -139,7 +136,7 @@ export default class Search extends Component {
                       <Input
                         name="radius"
                         type="text"
-                        placeholder="Radius"
+                        placeholder="Radius in miles"
                         onChange={this.handleRadius}
                       ></Input>
                     </Control>

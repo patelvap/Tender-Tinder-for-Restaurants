@@ -51,17 +51,48 @@ export default class Popup extends React.Component {
     }
 
     //Submit Handler
-    submitHandler = async (e) => {
-        console.log("submit");
+    submitHandler = async (e) => {  
+        e.preventDefault()
+        console.log(e.target)
+        console.log(e.target.getAttribute('status')) 
+        console.log('Look i am submitting stuff woooo');
+          if (e.target.getAttribute('status')==="Sign Up") {
+            try {
+                const result = await axios({
+                  method: 'post',
+                  url: 'http://localhost:3000/account/create',
+                  data: {
+                      name: this.state.usernameBox,
+                      pass: this.state.passBox
+                  }
+                });
 
-        e.preventDefault();
-        try {
-            const result = await axios({
-              method: 'get',
-              url: 'http://localhost:3000/',
-            });
-          } catch (error) {
-            console.log(error);
+                
+
+              } catch (error) {
+                console.log(error);
+              }
+        } else if (e.target.getAttribute('status')==="Log In") {
+            try {
+                const result = await axios({
+                  method: 'post',
+                  url: 'http://localhost:3000/account/login',
+                  data: {
+                      name: this.state.usernameBox,
+                      pass: this.state.passBox
+                  }
+                });
+                console.log("success")
+                this.props.setStateApp({
+                    loggedIn: this.state.usernameBox
+                })
+                localStorage.setItem('loggedIn', this.state.usernameBox)
+                
+                console.log(this.props.loggedIn)
+
+              } catch (error) {
+                console.log(error);
+              }
         }
     }
 
@@ -74,7 +105,7 @@ export default class Popup extends React.Component {
             <br></br>
             <h1 class="title">{this.state.textInfo}:</h1>
             <Box>
-                <form onSubmit={this.submitHandler}>
+                <form status={this.state.textInfo} onSubmit={this.submitHandler}>
                     <Field isHorizontal>
                         <Label isSize="large">Username:</Label>
                         <Control>

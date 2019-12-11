@@ -1,45 +1,80 @@
 import React, { Component } from 'react';
 import { View, TextArea, Text, Box, Field, Label, Control, Input, Button } from 'bloomer';
+import axios from 'axios';
 
 export default class Review extends Component {
     constructor() {
         super();
         this.state = {
-            latitude: '', //(required)
-            longitude: '', //(required)
-            categories: '', //delimited strong of categories (optional)
-            radius: '', //(optional)
-            term: '', //(optional)
-            offset: '', //(optional)
-            limit: '', //(optional)
+            review : "", //(required)
+            username : "tenderboys" //(required)
         }
-        navigator.geolocation.getCurrentPosition((position => {
-            this.setState({
-                latitude: position.coords.latitude,
-                longitude: position.coords.longitude,
-            });
-        }))
+    };
+
+    updateReview = e => {
+        e.preventDefault();
+        this.setState({
+            [e.target.name]: e.target.value
+        });
+    };
+
+
+    submit = e => {
+        e.preventDefault();
+        this.uploadPost();
+    };
+
+    uploadPost(){
+        console.log("getting her")
+        const pubRoot = new axios.create({
+            baseURL: "http://localhost:3000/public"
+          });
+        pubRoot.post(`/reviews/`, {
+            data: {review: this.state.review, username: this.state.username}
+          })
+          .then(function (response) {
+            console.log("itworked");
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
     }
+
+
     
+
     
-    //need to add categories in this - combo box
+      
     render() {
+
         return (
-                <Box>
+            <Box>
+                <form onSubmit={this.submit}>
                     <Field>
-                        <p>Used for the Review Page</p>      
-                    </Field>     
+                        <p>Used for the Review Page</p>
+                    </Field>
+
                     <Field>
                         <Label>Insert Reviews</Label>
                         <Control>
-                            <TextArea placeholder={'Insert Reviews'} />
-                        </Control>
-                        <br/>
+                            <Input
+                                name="review"
+                                type="text"
+                                placeholder="Post Your Review Here"
+                                onChange={this.updateReview}
+                            ></Input>                        </Control>
                         <Control>
-                            <Button isColor='primary' is-hasTextAlign= "center">Submit</Button>
+                            <Button
+                                isColor="primary"
+                                type="submit"
+                            >
+                                Post!
+                            </Button>
                         </Control>
-                    </Field>  
-                </Box>
-            )
-        }
+                    </Field>
+                </form>
+            </Box>
+        );
     }
+
+}
