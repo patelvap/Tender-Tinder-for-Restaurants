@@ -24,20 +24,20 @@ export default class Review extends Component {
         const pubRoot = new axios.create({
             baseURL: "http://localhost:3000/public"
           });
+        var strr = [];
          pubRoot.get('/reviews')
         .then(function (response) {
         //    console.log("got the data");
            //console.log(response.data.result)
-         this.setState({events:response.data.result})
-         console.log(this.state.events)
+           strr.push(response)
           })
           .catch(function (error) {
         });
+        return strr
     }
 
     render() {    
-      this.getData()
-    
+      console.log(this.getData())
         return (
             <Box>
             <Column isSize="1/2">
