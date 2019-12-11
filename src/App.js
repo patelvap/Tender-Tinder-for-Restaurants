@@ -7,6 +7,7 @@ import Popup from './components/Popup';
 import Settings from './components/Settings'
 import Results from './components/Results';
 import Review from './components/Reviews';
+import Comments from './components/Comments';
 import './App.css';
 import { Container, Button, Columns } from 'bloomer';
 
