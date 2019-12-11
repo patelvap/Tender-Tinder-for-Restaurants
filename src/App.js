@@ -251,8 +251,18 @@ class App extends Component {
     this.setBlacklist(newList)
   }
 
+  addToBlacklist(id) {
+    let newList=this.state.blacklist
+    newList.push(`${id}`)
+    this.setState({
+      blacklist: newList
+    })
+    this.updateBlacklist()
+  }
+
   saveSettings() {
     this.updateBlacklist()
+    this.toggleSettings()
   }
 
   cancelSettings() {
