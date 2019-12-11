@@ -20,6 +20,8 @@ export default class MenuBar extends React.Component {
     super();
   }
 
+  
+
   render() {
     let accountSettings = null;
     if (this.props.loggedIn != null) {
@@ -28,6 +30,17 @@ export default class MenuBar extends React.Component {
           {this.props.loggedIn}'s Account Settings
         </NavbarItem>
       );
+    }
+
+    let loginLogoutButton = 
+    (<NavbarItem onClick={this.props.loginPopup} href="#">
+      Login
+    </NavbarItem>)
+    if (this.props.loggedIn!=null) {
+      loginLogoutButton = 
+      (<NavbarItem onClick={this.props.handleLogout} href="#">
+        Logout
+      </NavbarItem>)
     }
 
     return (
@@ -51,9 +64,7 @@ export default class MenuBar extends React.Component {
               <NavbarEnd>
                 <NavbarItem href="reviews">Reviews</NavbarItem>
                 {accountSettings}
-                <NavbarItem onClick={this.props.loginPopup} href="#">
-                  Login
-                </NavbarItem>
+                {loginLogoutButton}
               </NavbarEnd>
             </NavbarMenu>
           </Navbar>

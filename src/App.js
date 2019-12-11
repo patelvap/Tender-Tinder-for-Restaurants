@@ -157,6 +157,14 @@ class App extends Component {
     });
   }
 
+  //function that logs you out
+  handleLogout() {
+    this.setState({
+      loggedIn: null
+    })
+    localStorage.setItem('loggedIn', null)
+  }
+
   // function that controls the login popup
   toggleSettings() {
     this.setState({
@@ -184,6 +192,7 @@ class App extends Component {
             loggedIn={this.state.loggedIn}
             handleSettings={this.handleSettings.bind(this)}
             loginPopup={this.togglePopup.bind(this)}
+            handleLogout={this.handleLogout.bind(this)}
           />
           <br />
           <Route
