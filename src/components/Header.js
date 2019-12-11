@@ -3,7 +3,7 @@ import { Hero, HeroBody, Container, Title } from 'bloomer';
 
 const Header = () => {
     return (
-        <Hero isColor='info' isSize='medium'>
+        <Hero isColor='info' isSize='1/3'>
             <HeroBody>
                 <Container hasTextAlign='left'>
                     <Title>Tender: Tinder Restaurant Edition</Title>

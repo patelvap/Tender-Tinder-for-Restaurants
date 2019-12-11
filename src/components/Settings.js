@@ -5,7 +5,7 @@ import { Box, Field, Label, Control, Input, Button, Container } from 'bloomer';
 
 
 
-export default class Popup extends React.Component {
+export default class Popup extends Component {
     constructor() {
         super();
         this.state={
@@ -17,8 +17,8 @@ export default class Popup extends React.Component {
       
       
       return (
-        <div className='settingspopup'>
-          <div className='settingspopup_inner'>
+        <Container className='settingspopup'>
+          <Container className='settingspopup_inner'>
             <br></br>
             <h1 class="title">{this.props.loggedIn}'s Settings:</h1>
             <Box>
@@ -32,8 +32,8 @@ export default class Popup extends React.Component {
                 </Field>
             </Box>
           
-          </div>
-        </div>
+          </Container>
+        </Container>
       );
     }
 }
