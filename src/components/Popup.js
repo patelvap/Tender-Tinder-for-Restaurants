@@ -51,7 +51,10 @@ export default class Popup extends React.Component {
     }
 
     //Submit Handler
-    submitHandler = async (e) => {   
+    submitHandler = async (e) => {  
+        e.preventDefault()
+        console.log(e.target)
+        console.log(e.target.getAttribute('status')) 
         console.log('Look i am submitting stuff woooo');
           if (e.target.getAttribute('status')==="Sign Up") {
             try {
@@ -79,9 +82,12 @@ export default class Popup extends React.Component {
                       pass: this.state.passBox
                   }
                 });
-
-                this.props.loggedIn = true;
+                console.log("success")
+                this.props.setStateApp({
+                    loggedIn: this.state.usernameBox
+                })
                 
+                console.log(this.props.loggedIn)
 
               } catch (error) {
                 console.log(error);
@@ -98,7 +104,7 @@ export default class Popup extends React.Component {
             <br></br>
             <h1 class="title">{this.state.textInfo}:</h1>
             <Box>
-                <form onSubmit={this.submitHandler}>
+                <form status={this.state.textInfo} onSubmit={this.submitHandler}>
                     <Field isHorizontal>
                         <Label isSize="large">Username:</Label>
                         <Control>

@@ -26,6 +26,7 @@ const apiKey = `pm8o9ejAV8iA0lnYN8fK4lEKdh6nVH3foW1CB76vo0kVN9IK6dqv6awLhlVSWpm8
 class App extends Component {
   constructor() {
     super();
+    console.log("constructor running")
     this.state = {
       showPopup: false,
       loggedIn: null, //string username of logged in user, default null
@@ -196,6 +197,7 @@ class App extends Component {
                   loggedIn = {this.state.loggedIn}
                   closePopup={this.togglePopup.bind(this)}
                   handleUserDone={this.handleUserDone.bind(this)}
+                  setStateApp={this.setState.bind(this)}
                 />
                 : null
             }

@@ -54,7 +54,6 @@ export default class MenuBar extends React.Component {
                 <NavbarItem onClick={this.props.loginPopup} href="#">
                   Login
                 </NavbarItem>
-                {accountSettings}
               </NavbarEnd>
             </NavbarMenu>
           </Navbar>
