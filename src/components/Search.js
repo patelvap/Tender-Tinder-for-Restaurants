@@ -1,29 +1,20 @@
 import React, { Component } from "react";
 import {
-  Box,
-  Field,
   Label,
   Control,
   Input,
   Button,
   Panel,
-  PanelHeading,
-  Column,
-  Columns,
   Modal,
-  ModalClose,
   ModalCard,
   Container,
   ModalCardHeader,
   ModalCardBody,
-  Delete,
   ModalCardFooter,
-  ModalCardTitle,
-  Card
+  ModalCardTitle
 } from "bloomer";
 import { PanelBlock } from "bloomer/lib/components/Panel/PanelBlock";
 import { ModalBackground } from "bloomer/lib/components/Modal/ModalBackground";
-import { ModalContent } from "bloomer/lib/components/Modal/ModalContent";
 
 export default class Search extends Component {
   constructor() {
