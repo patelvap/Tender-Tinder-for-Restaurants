@@ -6,12 +6,9 @@ import MenuBar from './components/Menubar';
 import Popup from './components/Popup';
 import Settings from './components/Settings'
 import Results from './components/Results';
-import Reviews from './components/Reviews';
-import Comments from './components/Comments';
-
+import Review from './components/Reviews';
 import './App.css';
 import { Container, Button, Columns } from 'bloomer';
-import Review from './components/Reviews';
 
 const fetch = require('node-fetch');
 //const clientID = `jxpavrW-66I3Obpstl8qYA`; //our yelp API client id       
@@ -23,6 +20,7 @@ class App extends Component {
     this.state = {
         showPopup: false,
         loggedIn: null,  //string username of logged in user, default null
+
         results : 'none', //array of returned items from api call
 
         latitude: '', //(required)
@@ -123,7 +121,6 @@ class App extends Component {
     console.log(e.target.getAttribute('status'))
     console.log(e.target.getAttribute('username'))
     console.log(e.target.getAttribute('password'))
-
   }
 
   render() {
@@ -136,7 +133,7 @@ class App extends Component {
             loginPopup={this.togglePopup.bind(this)}
           />
           <Header />
-          <br></br>
+          <br/>
           <Route path="/search" strict render={(props) => (
             <Container>
               <Search getTargets={this.getTargets} {...props} />

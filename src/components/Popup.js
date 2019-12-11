@@ -62,7 +62,7 @@ export default class Popup extends React.Component {
             });
           } catch (error) {
             console.log(error);
-          }
+        }
     }
 
     render() {

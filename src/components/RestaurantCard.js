@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Card, CardImage, Image, CardContent, Media, MediaContent, Title, Content, Field, Button, Icon, Container } from 'bloomer';
+import { Card, CardImage, Image, CardContent, Media, MediaContent, Title, Content, Box, Button, Icon, Container, Columns, Column } from 'bloomer';
 
 class RestaurantCard extends Component {
     constructor(props) {
@@ -26,29 +26,38 @@ class RestaurantCard extends Component {
                 <CardContent>
                     <Media>
                         <MediaContent>
-                            <Title isSize={4}>{this.props.name}</Title>
+                            <Title hasTextAlign isSize={4}>{this.props.name}</Title>
                             {/*<Subtitle isSize={6}>{this.props.categories}</Subtitle>*/}
                         </MediaContent>
                      </Media>
                      <Content>
-                        {this.props.rating} - {this.props.price} - {this.props.category}
+                        {this.props.rating}<Icon className='fas fa-star'></Icon> - {this.props.price} - {this.props.category}
                         <br/>
                         {this.props.distance.toFixed(2)} mi. - {this.props.address}
                     </Content>
                 </CardContent>
-                <Container>
-                    <Field isHorizontal>
-                        <Button isColor='danger' isSize='normal'>
-                            <Icon isAlign='left' className='fas fa-times'></Icon>
-                        </Button>
-                        <Button isColor='info'>
-                            <Icon className='far fa-star'></Icon>
-                        </Button>
-                        <Button isColor='primary' isSize='normal'>
-                            <Icon isAlign='right' className='far fa-heart'></Icon>
-                        </Button>
-                    </Field>
-                </Container>
+                <Box>
+                    <Columns isCentered>
+                        <Column isSize='1/3'>
+                            <Button isColor='danger' isFullWidth>
+                                <Icon isAlign='left' className='fas fa-times'></Icon>
+                                <span>I don't like this</span>
+                            </Button>
+                        </Column>
+                        <Column isSize='1/3'>
+                            <Button isColor='info' isFullWidth>
+                                <Icon className='far fa-star'></Icon>
+                                <span>Show me this!</span>
+                            </Button>
+                        </Column>
+                        <Column isSize='1/3'>
+                            <Button isColor='primary' isFullWidth>
+                                <Icon isAlign='right' className='far fa-heart'></Icon>
+                                <span>Save for Later</span>
+                            </Button>
+                        </Column>
+                    </Columns>
+                </Box>
             </Card>
             )
         }

@@ -20,30 +20,26 @@ export default class Review extends Component {
             });
         }))
     }
-
-
+    
+    
     //need to add categories in this - combo box
     render() {
         return (
-
-
-            <Box>
-                <Field>
-                    <p>Used for the Review Page</p>
-                </Field>
-
-                <Field>
-                    <Label>Insert Reviews</Label>
-                    <Control>
-                        <TextArea placeholder={'Insert Reviews'} />
-                    </Control>
-                    <Control>
-                        <Button isColor='primary' is-hasTextAlign="center">Submit</Button>
-                    </Control>
-                </Field>
-
-            </Box>
-
-        )
+                <Box>
+                    <Field>
+                        <p>Used for the Review Page</p>      
+                    </Field>     
+                    <Field>
+                        <Label>Insert Reviews</Label>
+                        <Control>
+                            <TextArea placeholder={'Insert Reviews'} />
+                        </Control>
+                        <br/>
+                        <Control>
+                            <Button isColor='primary' is-hasTextAlign= "center">Submit</Button>
+                        </Control>
+                    </Field>  
+                </Box>
+            )
+        }
     }
-}
