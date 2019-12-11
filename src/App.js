@@ -7,6 +7,8 @@ import Popup from './components/Popup';
 import Settings from './components/Settings'
 import Results from './components/Results';
 import Reviews from './components/Reviews';
+import Comments from './components/Comments';
+
 import './App.css';
 import { Container, Button, Columns } from 'bloomer';
 import Review from './components/Reviews';
@@ -146,6 +148,7 @@ class App extends Component {
           <Route path="/reviews" strict render={(props) => (
             <Container>
               <Review getTargets={this.getTargets} {...props} />
+              <Comments getTargets={this.getTargets} {...props}/>
               <Columns isCentered></Columns>
             </Container>
           )} />
