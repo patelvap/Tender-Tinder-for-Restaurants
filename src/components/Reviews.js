@@ -28,10 +28,11 @@ export default class Review extends Component {
     
         console.log("getting her")
         const pubRoot = new axios.create({
-            baseURL: "http://localhost:3000/public"
+            baseURL: "http://localhost:3000/public",
           });
         pubRoot.post(`/reviews/`, {
-            data: {review: this.state.review, username: this.state.username}
+            data: {review: this.state.review, username: this.state.username},
+            type: "merge"
           })
           .then(function (response) {
             console.log("itworked");
