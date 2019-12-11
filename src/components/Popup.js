@@ -16,7 +16,8 @@ export default class Popup extends React.Component {
             usernameBox: "",
             passBox: "",
             switchModeText: "Don't have an account?",
-            modeButton: "Sign Up"
+            modeButton: "Sign Up",
+            errorMessage: ""
         }
     }
 
@@ -40,6 +41,7 @@ export default class Popup extends React.Component {
                 textInfo: "Sign Up",
                 isSignUp: true
             })
+            this.setState({errorMessage: ""})
         } else if (e.target.getAttribute('status')==="Log In") {
             this.setState({
                 modeButton: "Sign Up",
@@ -47,6 +49,7 @@ export default class Popup extends React.Component {
                 textInfo: "Log In",
                 isSignUp: false
             })
+            this.setState({errorMessage: ""})
         }
     }
 
@@ -86,9 +89,11 @@ export default class Popup extends React.Component {
                     textInfo: "Log In",
                     isSignUp: false
                 })
+                this.setState({errorMessage: ""})
 
               } catch (error) {
                 console.log(error);
+                this.setState({errorMessage: "Account already exists with that name!"})
               }
         } else if (e.target.getAttribute('status')==="Log In") {
             try {
@@ -110,11 +115,12 @@ export default class Popup extends React.Component {
 
                 localStorage.setItem('jwt', result.data.jwt)
                 console.log(localStorage.getItem('jwt'))
-
+                this.setState({errorMessage: ""})
                 console.log(this.props.loggedIn)
 
               } catch (error) {
                 console.log(error);
+                this.setState({errorMessage: "The username and password you entered did not match our records. Please double-check and try again."})
               }
         }
     }
@@ -154,6 +160,7 @@ export default class Popup extends React.Component {
                     <Field isGrouped>
                         <Control><Button isSize="large" isColor='primary' type='submit' status={this.state.textInfo} username={this.state.usernameBox} password={this.state.passBox} onClick={this.props.handleUserDone}>{this.state.textInfo}</Button></Control>
                         <Control><Button isSize="large" isColor='primary' type='button' isLink onClick={this.props.closePopup}>Cancel</Button></Control>
+                        <Label isColor='red'>{this.state.errorMessage}</Label>
                     </Field>
                 </form>
             </Box>
