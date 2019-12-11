@@ -67,7 +67,12 @@ export default class Popup extends React.Component {
                   }
                 });
 
-                
+                this.setState({
+                    modeButton: "Sign Up",
+                    switchModeText: "Don't have an account?",
+                    textInfo: "Log In",
+                    isSignUp: false
+                })
 
               } catch (error) {
                 console.log(error);
@@ -88,6 +93,9 @@ export default class Popup extends React.Component {
                 })
                 localStorage.setItem('loggedIn', this.state.usernameBox)
                 
+                setTimeout(this.props.closePopup, 1000)
+
+
                 console.log(this.props.loggedIn)
 
               } catch (error) {
@@ -97,7 +105,17 @@ export default class Popup extends React.Component {
     }
 
     render() {
-      
+      if (this.props.loggedIn!=null) {
+          return(
+            <div className='popup'>
+            <div className='popup_inner'>
+              <br></br>
+              <h1 class="title">Log In Successful!</h1>
+              
+            </div>
+          </div>
+          )
+      }
       
       return (
         <div className='popup'>
