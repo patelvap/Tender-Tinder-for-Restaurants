@@ -305,7 +305,9 @@ class App extends Component {
             strict
             render={props => (
               <Container>
-                <Review getTargets={this.getTargets} {...props} />
+                <Review getTargets={this.getTargets}
+                         username = {this.state.loggedIn}
+                                  {...props} />
                 <Comments getTargets={this.getTargets} {...props} />
                 <Columns isCentered></Columns>
               </Container>

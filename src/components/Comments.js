@@ -16,7 +16,6 @@ import {
   Column
 } from "bloomer";
 import axios from "axios";
-
 export default class Review extends Component {
   constructor() {
     super();
@@ -27,7 +26,7 @@ export default class Review extends Component {
     this.data = "";
     this.state = {
       review: "", //(required)
-      username: "tenderboys", //(required)
+      username: "", //(required)
       events: "ffefe",
       comb: [],
       reload: 0
