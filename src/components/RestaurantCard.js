@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Card, CardImage, Image, CardContent, Media, MediaContent, Title, Content } from 'bloomer';
+import { Card, CardImage, Image, CardContent, Media, MediaContent, Title, Content, Field, Button, Icon, Container } from 'bloomer';
 
 class RestaurantCard extends Component {
     constructor(props) {
@@ -36,6 +36,19 @@ class RestaurantCard extends Component {
                         {this.props.distance.toFixed(2)} mi. - {this.props.address}
                     </Content>
                 </CardContent>
+                <Container>
+                    <Field isHorizontal>
+                        <Button isColor='danger' isSize='normal'>
+                            <Icon isAlign='left' className='fas fa-times'></Icon>
+                        </Button>
+                        <Button isColor='info'>
+                            <Icon className='far fa-star'></Icon>
+                        </Button>
+                        <Button isColor='primary' isSize='normal'>
+                            <Icon isAlign='right' className='far fa-heart'></Icon>
+                        </Button>
+                    </Field>
+                </Container>
             </Card>
             )
         }
