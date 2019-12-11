@@ -1,18 +1,5 @@
 import React, { Component } from "react";
-import {
-  Column,
-  Content,
-  Title,
-  View,
-  TextArea,
-  Text,
-  Box,
-  Field,
-  Label,
-  Control,
-  Input,
-  Button
-} from "bloomer";
+import { Column, Content, Box } from "bloomer";
 import CommentCard from "./CommentCard";
 import axios from "axios";
 
