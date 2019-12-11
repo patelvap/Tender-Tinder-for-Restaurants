@@ -114,7 +114,6 @@ export default class Search extends Component {
       this.setState({
         renderHasRun: true
       })
-      console.log("test")
     }
     return (
       <Container>
