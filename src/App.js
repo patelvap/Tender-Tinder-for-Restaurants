@@ -163,6 +163,7 @@ class App extends Component {
       loggedIn: null
     })
     localStorage.setItem('loggedIn', null)
+    localStorage.setItem('jwt', null)
   }
 
   // function that controls the login popup

@@ -67,6 +67,19 @@ export default class Popup extends React.Component {
                   }
                 });
 
+                // try{
+                //     const setup = await axios({ //underlying data setup for account
+                //         method: 'post',
+                //         url: `http://localhost:3000/user/${this.props.loggedIn}`,
+                //         data: {
+                //             blacklist: []
+                //         }
+                //     })
+                //     console.log("success")
+                // } catch (error) {
+                //     console.log(error)
+                // }
+
                 this.setState({
                     modeButton: "Sign Up",
                     switchModeText: "Don't have an account?",
@@ -95,6 +108,8 @@ export default class Popup extends React.Component {
                 
                 setTimeout(this.props.closePopup, 1000)
 
+                localStorage.setItem('jwt', result.data.jwt)
+                console.log(localStorage.getItem('jwt'))
 
                 console.log(this.props.loggedIn)
 
