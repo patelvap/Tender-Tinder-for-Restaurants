@@ -50,7 +50,7 @@ export default class MenuBar extends React.Component {
                 <NavbarItem href="search">Search</NavbarItem>
               </NavbarStart>
               <NavbarEnd>
-                <NavbarItem href="about">About</NavbarItem>
+                <NavbarItem href="reviews">Reviews</NavbarItem>
                 {accountSettings}
                 <NavbarItem onClick={this.props.loginPopup} href="#">
                   Login
