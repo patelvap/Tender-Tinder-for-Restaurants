@@ -24,7 +24,11 @@ export default class MenuBar extends React.Component {
 
   render() {
     let accountSettings = null;
+    let reviewsButton=null
     if (this.props.loggedIn != null) {
+      reviewsButton = (
+        <NavbarItem href="reviews">Reviews</NavbarItem>
+      )
       accountSettings = (
         <NavbarItem onClick={this.props.handleSettings} href="#">
           {this.props.loggedIn}'s Account Settings
@@ -62,7 +66,7 @@ export default class MenuBar extends React.Component {
                 <NavbarItem href="search">Search</NavbarItem>
               </NavbarStart>
               <NavbarEnd>
-                <NavbarItem href="reviews">Reviews</NavbarItem>
+                {reviewsButton}
                 {accountSettings}
                 {loginLogoutButton}
               </NavbarEnd>
