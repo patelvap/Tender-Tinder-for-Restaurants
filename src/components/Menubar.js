@@ -24,14 +24,8 @@ export default class MenuBar extends React.Component {
     let accountSettings = null;
     if (this.props.loggedIn != null) {
       accountSettings = (
-        <NavbarItem>
-          <Button
-            isColor="blue"
-            user={this.props.loggedIn}
-            onClick={this.props.handleSettings}
-          >
-            {this.props.loggedIn}'s Settings
-          </Button>
+        <NavbarItem onClick={this.props.handleSettings} href="#">
+          {this.props.loggedIn}'s Account Settings
         </NavbarItem>
       );
     }
@@ -56,7 +50,7 @@ export default class MenuBar extends React.Component {
               </NavbarStart>
               <NavbarEnd>
                 <NavbarItem href="about">About</NavbarItem>
-
+                {accountSettings}
                 <NavbarItem onClick={this.props.loginPopup} href="#">
                   Login
                 </NavbarItem>
