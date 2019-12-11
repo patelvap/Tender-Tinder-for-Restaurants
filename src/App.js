@@ -8,6 +8,7 @@ import Settings from "./components/Settings";
 import Results from "./components/Results";
 import Review from "./components/Reviews";
 import Comments from "./components/Comments";
+import axios from 'axios';
 import "./App.css";
 import {
   Container,
@@ -18,6 +19,7 @@ import {
   Column,
   Icon
 } from "bloomer";
+import { throwStatement } from "@babel/types";
 
 const fetch = require("node-fetch");
 //const clientID = `jxpavrW-66I3Obpstl8qYA`; //our yelp API client id
@@ -32,6 +34,7 @@ class App extends Component {
       this.state={
         showPopup: false,
         loggedIn: null, //string username of logged in user, default null
+        blacklist: null,
   
         results: "none", //array of returned items from api call
   
@@ -47,6 +50,7 @@ class App extends Component {
       this.state = {
         showPopup: false,
         loggedIn: localStorage.getItem('loggedIn'), //string username of logged in user, default null
+        blacklist: null,
   
         results: "none", //array of returned items from api call
   
@@ -133,7 +137,8 @@ class App extends Component {
           radius: radius,
           term: term,
           offset: offset,
-          limit: limit
+          limit: limit,
+          hasrun: false
         });
       })
       .catch(() => {
@@ -145,7 +150,8 @@ class App extends Component {
           radius: radius,
           term: term,
           offset: offset,
-          limit: limit
+          limit: limit,
+          hasrun: false
         });
       });
   };
@@ -166,6 +172,53 @@ class App extends Component {
     localStorage.setItem('jwt', null)
   }
 
+  //handles intialization of blacklist on account login
+  async retrieveUserData() {
+    let jwt = localStorage.getItem('jwt')
+    console.log("testing retrieve")
+    try {
+       
+      const result = await axios({
+        method: 'get',
+        url: `http://localhost:3000/user/blacklist`,
+        headers: {Authorization: `Bearer ${jwt}`},
+      });
+      console.log(result)
+      this.setBlacklist(result.data.result)
+    } catch (error) {
+      console.log(error)
+      console.log("in catch")
+      const result = await axios({
+        method: 'post',
+        url: `http://localhost:3000/user/blacklist`,
+        headers: {Authorization: `Bearer ${jwt}`},
+        data: {data: []}
+      });
+      this.setBlacklist([])
+    }
+
+  }
+
+  // function that sets blacklist local value
+  setBlacklist(list) {
+    this.setState({
+      blacklist: list
+    })
+    console.log("blacklist:")
+    console.log(this.state.blacklist)
+  }
+
+  //updates blacklist on backend
+  async updateBlacklist() {
+    let jwt = localStorage.getItem('jwt')
+    const result = await axios({
+      method: 'post',
+      url: `http://localhost:3000/user/blacklist`,
+      headers: {Authorization: `Bearer ${jwt}`},
+      data: {data: this.state.blacklist}
+    });
+  }
+
   // function that controls the login popup
   toggleSettings() {
     this.setState({
@@ -175,17 +228,43 @@ class App extends Component {
 
   //function that handles account settings button press
   handleSettings(e) {
-    console.log(e.target.getAttribute("user") + " tried pressing settings");
     this.toggleSettings();
   }
 
   handleUserDone(e) {
-    console.log(e.target.getAttribute("status"));
-    console.log(e.target.getAttribute("username"));
-    console.log(e.target.getAttribute("password"));
+    // console.log(e.target.getAttribute("status"));
+    // console.log(e.target.getAttribute("username"));
+    // console.log(e.target.getAttribute("password"));
+  }
+
+  deleteBlacklistItem(e) {
+    let toDelete=e.target.getAttribute('id')
+    console.log(toDelete)
+    let toDelIndex=null
+    let newList=this.state.blacklist
+    for (let each in newList) {
+      if (newList[each]==toDelete) {
+        toDelIndex=each
+      }
+    }
+    newList.splice(toDelIndex, 1)
+    this.setBlacklist(newList)
+  }
+
+  saveSettings() {
+    this.updateBlacklist()
+  }
+
+  cancelSettings() {
+    this.retrieveUserData()
+    this.toggleSettings()
   }
 
   render() {
+    if (!this.state.hasrun) {
+      this.retrieveUserData()
+      this.setState({hasrun:true})
+    }
     return (
       <Router basename={process.env.PUBLIC_URL}>
         <div className="App">
@@ -227,6 +306,7 @@ class App extends Component {
                   closePopup={this.togglePopup.bind(this)}
                   handleUserDone={this.handleUserDone.bind(this)}
                   setStateApp={this.setState.bind(this)}
+                  retrieveUserData={this.retrieveUserData.bind(this)}
                 />
                 : null
             }
@@ -234,8 +314,11 @@ class App extends Component {
           <div id="settingsPopup">
             {this.state.showSettings ? (
               <Settings
-                closeSettings={this.toggleSettings.bind(this)}
+                closeSettings={this.cancelSettings.bind(this)}
                 loggedIn={this.state.loggedIn}
+                blacklist={this.state.blacklist}
+                onDelete={this.deleteBlacklistItem.bind(this)}
+                saveSettings={this.saveSettings.bind(this)}
               />
             ) : null}
           </div>
