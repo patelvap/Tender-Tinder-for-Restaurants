@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { View, TextArea, Text, Box, Field, Label, Control, Input, Button } from 'bloomer';
+import { Title, View, TextArea, Text, Box, Field, Label, Control, Input, Button } from 'bloomer';
 
-export default class Review extends Component {
+export default class Comments extends Component {
     constructor() {
         super();
         this.state = {
@@ -33,13 +33,7 @@ export default class Review extends Component {
                 </Field>
 
                 <Field>
-                    <Label>Insert Reviews</Label>
-                    <Control>
-                        <TextArea placeholder={'Insert Reviews'} />
-                    </Control>
-                    <Control>
-                        <Button isColor='primary' is-hasTextAlign="center">Submit</Button>
-                    </Control>
+                    <Title>Insert Reviews</Title>
                 </Field>
 
             </Box>
