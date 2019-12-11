@@ -76,7 +76,7 @@ export default class Review extends Component {
 
     return (
       <Column isSize="1/2">
-        {this.state.comb.map(result => {
+        {this.state.comb.slice(0).reverse().map(result => {
           return (
           <Card>
             <CardContent>
