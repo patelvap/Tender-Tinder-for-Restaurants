@@ -51,18 +51,42 @@ export default class Popup extends React.Component {
     }
 
     //Submit Handler
-    submitHandler = async (e) => {
-        console.log("submit");
+    submitHandler = async (e) => {   
+        console.log('Look i am submitting stuff woooo');
+          if (e.target.getAttribute('status')==="Sign Up") {
+            try {
+                const result = await axios({
+                  method: 'post',
+                  url: 'http://localhost:3000/account/create',
+                  data: {
+                      name: this.state.usernameBox,
+                      pass: this.state.passBox
+                  }
+                });
 
-        e.preventDefault();
-        try {
-            const result = await axios({
-              method: 'get',
-              url: 'http://localhost:3000/',
-            });
-          } catch (error) {
-            console.log(error);
-          }
+                
+
+              } catch (error) {
+                console.log(error);
+              }
+        } else if (e.target.getAttribute('status')==="Log In") {
+            try {
+                const result = await axios({
+                  method: 'post',
+                  url: 'http://localhost:3000/account/login',
+                  data: {
+                      name: this.state.usernameBox,
+                      pass: this.state.passBox
+                  }
+                });
+
+                this.props.loggedIn = true;
+                
+
+              } catch (error) {
+                console.log(error);
+              }
+        }
     }
 
     render() {

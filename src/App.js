@@ -152,6 +152,7 @@ class App extends Component {
           <div id="loginPopup">
             {this.state.showPopup ? 
                 <Popup
+                  loggedIn = {this.state.loggedIn}
                   closePopup={this.togglePopup.bind(this)}
                   handleUserDone={this.handleUserDone.bind(this)}
                 />
