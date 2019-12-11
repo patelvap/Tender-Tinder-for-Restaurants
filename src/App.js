@@ -9,7 +9,15 @@ import Results from "./components/Results";
 import Review from "./components/Reviews";
 import Comments from "./components/Comments";
 import "./App.css";
-import { Container, Button, Columns } from "bloomer";
+import {
+  Container,
+  Button,
+  Columns,
+  Footer,
+  Content,
+  Column,
+  Icon
+} from "bloomer";
 
 const fetch = require("node-fetch");
 //const clientID = `jxpavrW-66I3Obpstl8qYA`; //our yelp API client id
@@ -198,6 +206,24 @@ class App extends Component {
               />
             ) : null}
           </div>
+          <Footer id="footer">
+            <Container>
+              <Content>
+                <Columns>
+                  <Column isFull>
+                    <p>
+                      Made with
+                      <Icon
+                        hasTextColor="danger"
+                        className="fa fa-heart"
+                      ></Icon>
+                      by Tenderizers
+                    </p>
+                  </Column>
+                </Columns>
+              </Content>
+            </Container>
+          </Footer>
         </div>
       </Router>
     );

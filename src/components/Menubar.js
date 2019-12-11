@@ -25,7 +25,7 @@ export default class MenuBar extends React.Component {
     if (this.props.loggedIn != null) {
       accountSettings = (
         <NavbarItem onClick={this.props.handleSettings} href="#">
-            {this.props.loggedIn}'s Account Settings
+          {this.props.loggedIn}'s Account Settings
         </NavbarItem>
       );
     }
@@ -38,7 +38,6 @@ export default class MenuBar extends React.Component {
           </Container>
         </HeroBody>
         <HeroFooter>
-          {" "}
           <Navbar
             style={{
               marginLeft: "14%",
@@ -55,6 +54,7 @@ export default class MenuBar extends React.Component {
                 <NavbarItem onClick={this.props.loginPopup} href="#">
                   Login
                 </NavbarItem>
+                {accountSettings}
               </NavbarEnd>
             </NavbarMenu>
           </Navbar>
