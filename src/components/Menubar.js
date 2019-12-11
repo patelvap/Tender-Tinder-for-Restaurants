@@ -44,7 +44,6 @@ export default class MenuBar extends React.Component {
           </Container>
         </HeroBody>
         <HeroFooter>
-          {" "}
           <Navbar
             style={{
               marginLeft: "14%",
@@ -57,12 +56,11 @@ export default class MenuBar extends React.Component {
               </NavbarStart>
               <NavbarEnd>
                 <NavbarItem href="about">About</NavbarItem>
-                <NavbarItem href="#">
-                  Account Settings{accountSettings}
-                </NavbarItem>
+
                 <NavbarItem onClick={this.props.loginPopup} href="#">
                   Login
                 </NavbarItem>
+                {accountSettings}
               </NavbarEnd>
             </NavbarMenu>
           </Navbar>
