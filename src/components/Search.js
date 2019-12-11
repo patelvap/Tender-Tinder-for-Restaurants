@@ -31,12 +31,13 @@ export default class Search extends Component {
     this.state = {
       latitude: "", //(required)
       longitude: "", //(required)
-      categories: "", //delimited strong of categories (optional)
+      categories: "restaurants", //delimited strong of categories (optional)
       radius: "", //(optional)
       term: "", //(optional)
       offset: "", //(optional)
       limit: "", //(optional)
-      isActive: false
+      isActive: false,
+      renderHasRun: false
     };
     navigator.geolocation.getCurrentPosition(position => {
       this.setState({
@@ -54,7 +55,7 @@ export default class Search extends Component {
   };
 
   submit = e => {
-    e.preventDefault();
+    if (e!=undefined) {e.preventDefault();}
     navigator.geolocation.getCurrentPosition(position => {
       this.setState({
         latitude: position.coords.latitude,
@@ -108,6 +109,13 @@ export default class Search extends Component {
 
   //need to add categories in this - combo box
   render() {
+    if (!this.state.renderHasRun&&this.state.longitude!=""&&this.state.latitude!="") {
+      this.submit()
+      this.setState({
+        renderHasRun: true
+      })
+      console.log("test")
+    }
     return (
       <Container>
         <Button onClick={this.changeActive.bind(this)}>
