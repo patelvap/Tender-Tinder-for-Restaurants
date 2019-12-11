@@ -64,7 +64,6 @@ export default class Popup extends React.Component {
                   }
                 });
 
-<<<<<<< HEAD
                 
 
               } catch (error) {
@@ -87,16 +86,6 @@ export default class Popup extends React.Component {
               } catch (error) {
                 console.log(error);
               }
-=======
-        e.preventDefault();
-        try {
-            const result = await axios({
-              method: 'get',
-              url: 'http://localhost:3000/',
-            });
-          } catch (error) {
-            console.log(error);
->>>>>>> dcc63bc9fc6ac531504a54d029a57c9081fbf024
         }
     }
 

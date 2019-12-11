@@ -191,7 +191,6 @@ class App extends Component {
             )}
           />
           <div id="loginPopup">
-<<<<<<< HEAD
             {this.state.showPopup ? 
                 <Popup
                   loggedIn = {this.state.loggedIn}
@@ -200,14 +199,6 @@ class App extends Component {
                 />
                 : null
             }
-=======
-            {this.state.showPopup ? (
-              <Popup
-                closePopup={this.togglePopup.bind(this)}
-                handleUserDone={this.handleUserDone.bind(this)}
-              />
-            ) : null}
->>>>>>> dcc63bc9fc6ac531504a54d029a57c9081fbf024
           </div>
           <div id="settingsPopup">
             {this.state.showSettings ? (
