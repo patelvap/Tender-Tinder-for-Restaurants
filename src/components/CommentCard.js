@@ -32,7 +32,7 @@ class CommentCard extends Component {
     };
   }
 
-  render() {
+  rendjer() {
     return (
       <Card>
         <CardImage>
@@ -82,4 +82,3 @@ class CommentCard extends Component {
   }
 }
 
-export default RestaurantCard;
