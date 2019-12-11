@@ -56,9 +56,9 @@ export default class Popup extends React.Component {
     //Submit Handler
     submitHandler = async (e) => {  
         e.preventDefault()
-        console.log(e.target)
-        console.log(e.target.getAttribute('status')) 
-        console.log('Look i am submitting stuff woooo');
+        // console.log(e.target)
+        // console.log(e.target.getAttribute('status')) 
+        // console.log('Look i am submitting stuff woooo');
           if (e.target.getAttribute('status')==="Sign Up") {
             try {
                 const result = await axios({
@@ -105,7 +105,7 @@ export default class Popup extends React.Component {
                       pass: this.state.passBox
                   }
                 });
-                console.log("success")
+                // console.log("success")
                 this.props.setStateApp({
                     loggedIn: this.state.usernameBox
                 })
@@ -114,9 +114,11 @@ export default class Popup extends React.Component {
                 setTimeout(this.props.closePopup, 1000)
 
                 localStorage.setItem('jwt', result.data.jwt)
-                console.log(localStorage.getItem('jwt'))
+                // console.log(localStorage.getItem('jwt'))
                 this.setState({errorMessage: ""})
-                console.log(this.props.loggedIn)
+                // console.log(this.props.loggedIn)
+
+                this.props.retrieveUserData()
 
               } catch (error) {
                 console.log(error);
