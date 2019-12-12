@@ -28,7 +28,7 @@ class Results extends Component {
     if (this.state.outOfResults==true) {
       return(
         <Column isSize="1/2">
-          <h1 className="title">Uh Oh! You have reached your swipe limit for today!If you are really that hungry, refresh and change your filters. Don't be a picky eater next time</h1>
+          <h1 className="title">Uh Oh! You have reached your swipe limit for today! If you are really that hungry, refresh and change your filters. Don't be a picky eater next time</h1>
         </Column>
       )
     }
@@ -39,7 +39,7 @@ class Results extends Component {
         this.state.outOfResults=true
         return(
           <Column isSize="1/2">
-            <h1 className="title">Uh Oh! You have reached your swipe limit for today!If you are really that hungry, refresh and change your filters. Don't be a picky eater next time</h1>
+            <h1 className="title">Uh Oh! You have reached your swipe limit for today! If you are really that hungry, refresh and change your filters. Don't be a picky eater next time</h1>
           </Column>
         )
       }
