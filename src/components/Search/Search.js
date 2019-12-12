@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { debounce } from 'throttle-debounce';
+import './Search.css';
 import {
   Label,
   Control,
@@ -100,7 +101,7 @@ export default class Search extends Component {
     });
   };
 
-  yelpAutocomplete() {
+  async yelpAutocomplete() {
     let yelpKey = `VxGmGdflQDo8ChLJQaQ4gQFBsJ_2qpGd74Xmvo72DGyAGLayLv20T6Q8snm2SIH_Q5dQ-8YQnLIfnomJQzxroI0TqR2mu6b2mF-Mo4en1WbdJgBv9Q01iHbDWpDyXXYx`; //our yelp api key
 
     let searchURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/autocomplete?";
@@ -136,7 +137,12 @@ export default class Search extends Component {
     return (
       <ul>
         {this.suggestions.map((elt => 
-			<li key={elt} onClick={() => {this.suggestionSelect(elt); this.suggestions=[]}}>{elt}</li>))}
+			<li key={elt} onClick={() => {
+				this.suggestionSelect(elt); 
+				this.suggestions=[];
+				}}>
+				{elt}
+			</li>))}
       </ul>
     )
   }
@@ -170,7 +176,7 @@ export default class Search extends Component {
                 <Panel>
                   <PanelBlock>
                     <Label>Search Term</Label>
-                    <Control>
+                    <Control className='autocomplete'>
                       <Input
                         name="term"
                         type="text"
