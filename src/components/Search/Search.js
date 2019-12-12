@@ -102,7 +102,7 @@ export default class Search extends Component {
   };
 
   async yelpAutocomplete() {
-    let yelpKey = `pm8o9ejAV8iA0lnYN8fK4lEKdh6nVH3foW1CB76vo0kVN9IK6dqv6awLhlVSWpm81FeaXAgGyEOnycrvc6HdXlPtbcQv7vC1wvOjkJ4Ei7LLrhvH-K3xQHtxafbWXXYx`; //our yelp api key
+    let yelpKey = `VxGmGdflQDo8ChLJQaQ4gQFBsJ_2qpGd74Xmvo72DGyAGLayLv20T6Q8snm2SIH_Q5dQ-8YQnLIfnomJQzxroI0TqR2mu6b2mF-Mo4en1WbdJgBv9Q01iHbDWpDyXXYx`; //our yelp api key
 
     let searchURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/autocomplete?";
     
@@ -176,6 +176,7 @@ export default class Search extends Component {
                 <Panel>
                   <PanelBlock>
                     <Label>Search Term</Label>
+                    &nbsp; &nbsp;
                     <Control className='autocomplete'>
                       <Input
                         name="term"
@@ -192,6 +193,7 @@ export default class Search extends Component {
                   </PanelBlock>
                   <PanelBlock>
                     <Label>Category</Label>
+                    &nbsp; &nbsp; &nbsp;
                     <Control>
                       <Input
                         name="categories"
