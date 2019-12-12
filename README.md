@@ -33,3 +33,5 @@ redirect you to the restaurant.
 
 Users who choose to create an account with the site have the ability to save restaurants for later 
 as well as blacklist restaurants that they do not wish to see filtering them from their restaurant feed.
+
+Currently our front end is hosted on gh-pages but account functionality is not supported as the backend is not hosted.
