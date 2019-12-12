@@ -28,12 +28,20 @@ class Results extends Component {
     if (this.state.outOfResults==true) {
       return(
         <Column isSize="1/2">
-          <h1 className="title">Uh Oh! Out of Results! Try changing your filter!</h1>
+          <h1 className="title">Uh Oh! Out of Results! Try refreshing and changing your filter!</h1>
         </Column>
       )
     }
     if (this.props.results !== undefined) {
       let newResults = this.props.results.filter(this.props.checkBlacklist)
+      if (newResults.length==0) {
+        this.state.outOfResults=true
+        return(
+          <Column isSize="1/2">
+            <h1 className="title">Uh Oh! Out of Results! Try refreshing and changing your filter!</h1>
+          </Column>
+        )
+      }
       let result = newResults[this.state.index];
       return (
         <Column isSize="1/2">
