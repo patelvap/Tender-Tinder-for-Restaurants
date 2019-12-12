@@ -162,9 +162,10 @@ class App extends Component {
   handleLogout() {
     this.setState({
       loggedIn: null
-    })
-    localStorage.setItem('loggedIn', null)
-    localStorage.setItem('jwt', null)
+    });
+    localStorage.setItem('loggedIn', null);
+    localStorage.setItem('jwt', null);
+    location.reload();
   }
 
   //handles intialization of blacklist on account login
