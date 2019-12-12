@@ -17,7 +17,9 @@ import {
   Form,
   Control,
   Label,
-  Field
+  Field,
+  FieldLabel,
+  FieldBody
 } from "bloomer";
 
 class BlacklistButton extends Component {
@@ -34,8 +36,8 @@ class BlacklistButton extends Component {
       <Container>
         <Box>
         <Field isGrouped>
-        <Label>{this.props.id}</Label>
-        <Button isAlign="right" id={this.props.id} onClick={this.props.onDelete}>DELETE</Button>
+        <FieldLabel><Label>{this.props.id}</Label></FieldLabel>
+        <FieldBody><Button id={this.props.id} onClick={this.props.onDelete}>DELETE</Button></FieldBody>
         </Field>
         </Box>
       </Container>
