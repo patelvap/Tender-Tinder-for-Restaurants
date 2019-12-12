@@ -38,6 +38,7 @@ export default class Search extends Component {
         longitude: position.coords.longitude
       });
     });
+    this.suggestions = [];
   }
 
   updateSearch = e => {
@@ -97,17 +98,7 @@ export default class Search extends Component {
     });
   };
 
-  /**
-  * Searches Yelp API for autocomplete suggestions, returns an object containing suggestions for business titles, key words, and categories.
-  *
-  * @param {string} text text to be completed by the autocomplete request, probably the contents of a search bar.
-  * @param {number} latitude latitude of position about which to search (required) returns null when undefined
-  * @param {number} longitude longitude of position about which to search (required) returns null when undefined
-  * @param {boolean} needsCorsAnywhere boolean governing the use of cors-anywhere, cors-anywhere is enabled when true (optional)
-  *
-  *
-  */
-  yelpAutocomplete(text, latitude, longitude, needsCorsAnywhere) {
+  async yelpAutocomplete(text, latitude, longitude, needsCorsAnywhere) {
     let yelpKey = `pm8o9ejAV8iA0lnYN8fK4lEKdh6nVH3foW1CB76vo0kVN9IK6dqv6awLhlVSWpm81FeaXAgGyEOnycrvc6HdXlPtbcQv7vC1wvOjkJ4Ei7LLrhvH-K3xQHtxafbWXXYx`; //our yelp api key
     let finalResult;
     if (latitude == undefined || longitude == undefined) {
@@ -130,22 +121,37 @@ export default class Search extends Component {
     searchURL =
       searchURL + `text=${text}&latitude=${latitude}&longitude=${longitude}`; //appends everything.
 
-    let pushing = this.state.autocomplete;
+    //let pushing = [];
     fetch(`${searchURL}`, {
       headers: { Authorization: "Bearer " + yelpKey }
     }).then(res => res.json())
       .then(data => {
         let terms = data.terms;
-        pushing.push(terms);
-        //this.setState({autocomplete: data.terms})
+        for (let i = 0; i < terms.length; i++) {
+          //pushing.push(terms[i].text)
+          this.suggestions.push(terms[i].text);
+          //console.log(pushing)
+        }
       });
-
-    this.setState({
-      autocomplete: pushing
-    });
+      //console.log(pushing)
   }
 
+  onTextChanged = (e) => {
+    const text = e.target.value;
+    this.yelpAutocomplete(text);
+    console.log(this.suggestions)
+  }
 
+  renderSuggestions() {
+    if (this.suggestions.length === 0) {
+      return null;
+    }
+    return (
+      <ul>
+        {this.suggestions.map((elt => <li>{elt}</li>))}
+      </ul>
+    )
+  }
 
   //need to add categories in this - combo box
   render() {
@@ -155,13 +161,14 @@ export default class Search extends Component {
         renderHasRun: true
       });
     }
-    if (this.state.runTotal < 1) {
-      this.yelpAutocomplete('steak', this.state.latitude, this.state.longitude, true);
-      this.setState({
-        runTotal: 1
-      });
-      
-    }
+    // if (this.state.runTotal < 1) {
+    //   console.log('test')
+    //   this.yelpAutocomplete('steak', this.state.latitude, this.state.longitude, true);
+    //   this.setState({
+    //     runTotal: 1
+    //   });
+    // }
+
     return (
       <Container>
         <Button onClick={this.changeActive.bind(this)}>
@@ -184,8 +191,12 @@ export default class Search extends Component {
                         type="text"
                         placeholder="Enter restaurant"
                         value={this.state.term}
-                        onChange={this.updateSearch}
+                        onChange={() => {
+                          this.updateSearch();
+                          //this.onTextChanged();
+                        }}
                       ></Input>
+                      {this.renderSuggestions()}
                     </Control>
                   </PanelBlock>
                   <PanelBlock>
@@ -207,7 +218,6 @@ export default class Search extends Component {
                         name="radius"
                         type="text"
                         placeholder="Radius in miles"
-                        value={this.state.radius}
                         onChange={this.handleRadius}
                       ></Input>
                     </Control>

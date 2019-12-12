@@ -17,7 +17,7 @@ class Results extends Component {
   updateIndex() { 
     this.setState({ index: this.state.index+1 })
     this.render();
-    if (this.state.index === 19) {
+    if (this.state.index === 49) {
       this.setState({index: 0})
     }
   };

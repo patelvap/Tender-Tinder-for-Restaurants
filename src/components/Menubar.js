@@ -36,6 +36,11 @@ export default class MenuBar extends React.Component {
       );
     }
 
+
+    let welcomeButton = (
+      <NavbarItem href ="/">Welcome</NavbarItem>
+    )
+
     let loginLogoutButton = 
     (<NavbarItem onClick={this.props.loginPopup} href="#">
       Login
@@ -63,12 +68,14 @@ export default class MenuBar extends React.Component {
           >
             <NavbarMenu isActive="true">
               <NavbarStart>
+                {welcomeButton}
                 <NavbarItem href="search">Search</NavbarItem>
               </NavbarStart>
               <NavbarEnd>
                 {reviewsButton}
                 {accountSettings}
                 {loginLogoutButton}
+
               </NavbarEnd>
             </NavbarMenu>
           </Navbar>

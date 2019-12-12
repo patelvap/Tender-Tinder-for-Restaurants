@@ -14,6 +14,27 @@
     },
     "vrajp": {
       "passwordHash": "$2b$10$3hoctFabI./UiXmizG2aBe8W7lDRbY3l88OYbnaJ47cCaov0XSTkS"
+    },
+    "mark": {
+      "passwordHash": "$2b$10$FIwpWQQXZRygHBENUDuZrOJiHevRC2sSTze310jiLuv7UvszC9L4S"
+    },
+    "dummy1": {
+      "passwordHash": "$2b$10$pE.Uhh/8r0UtH.H1xXTCy.DdBO8pmg3T/nqVBOehZxjlicWMyKuCu"
+    },
+    "dummy2": {
+      "passwordHash": "$2b$10$ZTWZYQ6YXyGP68q5dbu4YuJHpoGMafFAveydZxCY87iPZnDGHnBmS"
+    },
+    "notanaccount": {
+      "passwordHash": "$2b$10$2xKBifA3sa6ZFEvie7f4jOuCH0t5wXETZxgtoOppiy6IdbJ/EDHvC"
+    },
+    "potatoman69": {
+      "passwordHash": "$2b$10$bi85.e4Ixv3knP0tQ60Lh.KabqSi8GBIBZzL2dDN/cSbgQxSxs8mK"
+    },
+    "74potatoes": {
+      "passwordHash": "$2b$10$OGHh.wagmXZYR1QinpDWCOiMuOZH9BHLVNvphzb5IW7JiDTfeZGIy"
+    },
+    "gonewuser": {
+      "passwordHash": "$2b$10$3kHEwDeoa8sATVKvGjAYwOtIh9vvjjA1sXQm3KBtLtHq.sqxm7ykC"
     }
   }
 }

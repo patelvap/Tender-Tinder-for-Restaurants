@@ -1,18 +1,12 @@
 import React, { Component } from "react";
 import {
   Card,
-  CardImage,
-  Image,
   CardContent,
   Media,
   MediaContent,
   Title,
   Content,
   Box,
-  Button,
-  Icon,
-  Container,
-  Columns,
   Column
 } from "bloomer";
 import axios from "axios";
@@ -65,7 +59,7 @@ export default class Review extends Component {
         reload: 1
       });
     }
-    if (this.state.comb.length == 0) {
+    if (this.state.comb.length === 0) {
       return (
         <Box>
           <Title>

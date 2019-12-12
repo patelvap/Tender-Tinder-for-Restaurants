@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { Box, Field, Label, Control, Input, Button, Container } from 'bloomer';
+import { Box, Field, Label, Control, Input, Button } from 'bloomer';
 import axios from 'axios';
 
 //testing login popup:
 
 
 
-export default class Popup extends React.Component {
+export default class Popup extends Component {
     constructor() {
         super();
         this.state={
@@ -90,6 +90,7 @@ export default class Popup extends React.Component {
                     isSignUp: false
                 })
                 this.setState({errorMessage: "Thanks for signing up, you may now log in!"})
+                this.props.incrementUsersStat(this.state.usernameBox)
 
               } catch (error) {
                 console.log(error);

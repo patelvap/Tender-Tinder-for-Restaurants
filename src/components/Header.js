@@ -5,11 +5,6 @@ import {
   Container,
   Title,
   HeroFooter,
-  Navbar,
-  NavbarMenu,
-  NavbarStart,
-  NavbarItem,
-  NavbarEnd
 } from "bloomer";
 
 const Header = () => {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Title, TextArea, Text, Box, Field, Label, Control, Input, Button } from 'bloomer';
+import { Title, Box, Field, Control, Input, Button } from 'bloomer';
 import axios from 'axios';
 
 export default class Review extends Component {

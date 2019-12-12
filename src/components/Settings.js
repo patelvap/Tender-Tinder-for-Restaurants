@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Box, Field, Label, Control, Input, Button, Container } from 'bloomer';
+import { Box, Field, Control, Button } from 'bloomer';
 import Blacklist from './Blacklist'
 
 //testing login popup:

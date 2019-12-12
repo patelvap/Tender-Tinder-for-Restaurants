@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import Header from "./components/Header";
 import Search from "./components/Search";
 import MenuBar from "./components/Menubar";
 import Popup from "./components/Popup";
@@ -8,18 +7,17 @@ import Settings from "./components/Settings";
 import Results from "./components/Results";
 import Review from "./components/Reviews";
 import Comments from "./components/Comments";
+import Welcome from "./components/Welcome";
 import axios from 'axios';
 import "./App.css";
 import {
   Container,
-  Button,
   Columns,
   Footer,
   Content,
   Column,
   Icon
 } from "bloomer";
-import { throwStatement } from "@babel/types";
 
 const fetch = require("node-fetch");
 //const clientID = `jxpavrW-66I3Obpstl8qYA`; //our yelp API client id
@@ -28,7 +26,7 @@ const apiKey = `pm8o9ejAV8iA0lnYN8fK4lEKdh6nVH3foW1CB76vo0kVN9IK6dqv6awLhlVSWpm8
 class App extends Component {
   constructor() {
     super();
-    if (localStorage.getItem('loggedIn')=="null") {
+    if (localStorage.getItem('loggedIn') === "null") {
       this.state={
         showPopup: false,
         loggedIn: null, //string username of logged in user, default null
@@ -229,12 +227,12 @@ class App extends Component {
   }
 
   deleteBlacklistItem(e) {
-    let toDelete=e.target.getAttribute('id')
+    let toDelete = e.target.getAttribute('id')
     console.log(toDelete)
     let toDelIndex=null
     let newList=this.state.blacklist
     for (let each in newList) {
-      if (newList[each].id==toDelete) {
+      if (newList[each].id === toDelete) {
         toDelIndex=each
       }
     }
@@ -263,11 +261,22 @@ class App extends Component {
 
   checkBlacklist(restaurant) {
     for (let each in this.state.blacklist) {
-      if (this.state.blacklist[each].id==restaurant.id) {
+      if (this.state.blacklist[each].id === restaurant.id) {
         return false;
       }
     }
     return true;
+  }
+
+  async incrementUsersStat(user) {
+    const pubRoot = new axios.create({
+      baseURL: "http://localhost:3000/public",
+    });
+    pubRoot.post(`/users/`, {
+      data: {user},
+      type: "merge"
+    })
+    
   }
 
   render() {
@@ -290,6 +299,21 @@ class App extends Component {
             handleLogout={this.handleLogout.bind(this)}
           />
           <br />
+          
+          <Route
+            path="/"
+            exact strict
+            render={props => (
+              <Container>
+                <Welcome getTargets={this.getTargets}
+                         username = {this.state.loggedIn}
+                                  {...props} />
+                <Columns isCentered></Columns>
+              </Container>
+            )}
+          />
+
+
           <Route
             path="/search"
             strict
@@ -330,6 +354,7 @@ class App extends Component {
                   handleUserDone={this.handleUserDone.bind(this)}
                   setStateApp={this.setState.bind(this)}
                   retrieveUserData={this.retrieveUserData.bind(this)}
+                  incrementUsersStat={this.incrementUsersStat.bind(this)}
                 />
                 : null
             }
