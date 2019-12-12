@@ -112,7 +112,7 @@ export default class Search extends Component {
     }).then(res => res.json())
       .then(data => {
         let pushing = [];
-        if (data!==undefined || data.terms.length > 0) {
+        if (data !== undefined && data.terms !== undefined && data.terms.length > 0) {
           for (let i = 0; i < data.terms.length; i++) {
             pushing.push(data.terms[i].text)
             //this.suggestions.push(terms[i].text);
@@ -153,14 +153,6 @@ export default class Search extends Component {
         renderHasRun: true
       });
     }
-    // if (this.state.runTotal < 1) {
-    //   console.log('test')
-    //   this.yelpAutocomplete('steak', this.state.latitude, this.state.longitude, true);
-    //   this.setState({
-    //     runTotal: 1
-    //   });
-      
-    // }
 
     return (
       <Container>
