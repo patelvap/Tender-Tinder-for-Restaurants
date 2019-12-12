@@ -1,5 +1,8 @@
 {
   "test": {
     "blacklist": []
+  },
+  "surya": {
+    "blacklist": []
   }
 }

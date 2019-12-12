@@ -68,7 +68,7 @@ export default class Review extends Component {
       return (
         <Box>
           <Title>
-            No Reviews Have Yet Been Uploaded. Be the first to Comment!
+            No Restaurant Suggestions Have Yet Been Uploaded. Be the first to Suggest!
           </Title>
         </Box>
 
@@ -76,29 +76,32 @@ export default class Review extends Component {
     }
 
     return (
-      <Column isSize="1/2">
+      <Column hasTextAlign="centered" isSize="1/2" color="primary">
         {this.state.comb.slice(0).reverse().map(result => {
           return (
-          <Card>
+          
+          <Card color="primary">
             <CardContent>
               <Media>
                 <MediaContent>
-                  <Title hasTextAlign isSize={4}>
-                    {result.user + " says:"}
+                  <Title hasTextAlign isSize={3}>
+                    {"@" + result.user + " says:"}
                   </Title>
                 </MediaContent>
               </Media>
               <Content>
-                <Title>
+                <Title isSize={5} hasTextAlign="left">
                   {result.review}
                 </Title>
               </Content>
             </CardContent>
           </Card>
         )
+
         }
 
         )}
+        
       </Column>
     )
   }
