@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import { Title,Bold, Box, Field, Control, Input, Button } from 'bloomer';
+import { 
+    Title,
+    Box, 
+} from 'bloomer';
 import axios from 'axios';
 
 export default class Welcome extends Component {
