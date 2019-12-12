@@ -21,7 +21,7 @@ import {
 
 const fetch = require("node-fetch");
 //const clientID = `jxpavrW-66I3Obpstl8qYA`; //our yelp API client id
-const apiKey = `pm8o9ejAV8iA0lnYN8fK4lEKdh6nVH3foW1CB76vo0kVN9IK6dqv6awLhlVSWpm81FeaXAgGyEOnycrvc6HdXlPtbcQv7vC1wvOjkJ4Ei7LLrhvH-K3xQHtxafbWXXYx`; //our yelp api key
+const apiKey = `VxGmGdflQDo8ChLJQaQ4gQFBsJ_2qpGd74Xmvo72DGyAGLayLv20T6Q8snm2SIH_Q5dQ-8YQnLIfnomJQzxroI0TqR2mu6b2mF-Mo4en1WbdJgBv9Q01iHbDWpDyXXYx`; //our yelp api key
 
 class App extends Component {
   constructor() {
@@ -103,8 +103,8 @@ class App extends Component {
     } else {
       queryString += `latitude=${latitude}&longitude=${longitude}`;
       if (!checkCats) {
-        queryString += `&categories=restaurant,${categories}`;
-      } else {queryString += `&categories=restaurant`}
+        queryString += `&categories=restaurants,${categories}`;
+      } else {queryString += `&categories=restaurants`}
       if (!checkRad) {
         queryString += `&radius=${radius}`;
       }
