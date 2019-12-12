@@ -304,12 +304,13 @@ class App extends Component {
             path="/"
             exact strict
             render={props => (
-              <Container>
+              <div><Container>
                 <Welcome getTargets={this.getTargets}
                          username = {this.state.loggedIn}
                                   {...props} />
                 <Columns isCentered></Columns>
               </Container>
+              <br></br></div>
             )}
           />
 
