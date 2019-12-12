@@ -11,20 +11,20 @@ import {
   ModalCardHeader,
   ModalCardBody,
   ModalCardFooter,
-  ModalCardTitle
+  ModalCardTitle,
+  ModalBackground,
+  PanelBlock,
 } from "bloomer";
-import { PanelBlock } from "bloomer/lib/components/Panel/PanelBlock";
-import { ModalBackground } from "bloomer/lib/components/Modal/ModalBackground";
 
 export default class Search extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       latitude: "", //(required)
       longitude: "", //(required)
-      categories: "restaurants", //delimited strong of categories (optional)
+      categories: "", //delimited strong of categories (optional)
       radius: "", //(optional)
-      term: "", //(optional)
+      term: "", //(optional) -> search term 
       offset: "", //(optional)
       limit: "", //(optional)
       isActive: false,
@@ -46,9 +46,7 @@ export default class Search extends Component {
   };
 
   submit = e => {
-    if (e != undefined) {
-      e.preventDefault();
-    }
+    if (e!==undefined) {e.preventDefault();} //event will never be undefined?
     navigator.geolocation.getCurrentPosition(position => {
       this.setState({
         latitude: position.coords.latitude,
@@ -83,9 +81,7 @@ export default class Search extends Component {
   };
 
   changeActive() {
-    this.setState({
-      isActive: !this.state.isActive
-    });
+    this.setState({ isActive: !this.state.isActive });
   }
 
   handleRadius = e => {
@@ -101,11 +97,7 @@ export default class Search extends Component {
 
   //need to add categories in this - combo box
   render() {
-    if (
-      !this.state.renderHasRun &&
-      this.state.longitude != "" &&
-      this.state.latitude != ""
-    ) {
+    if (!this.state.renderHasRun&&this.state.longitude!==""&&this.state.latitude!=="") {
       this.submit();
       this.setState({
         renderHasRun: true
@@ -132,6 +124,19 @@ export default class Search extends Component {
                         name="term"
                         type="text"
                         placeholder="Enter restaurant"
+                        value={this.state.term}
+                        onChange={this.updateSearch}
+                      ></Input>
+                    </Control>
+                  </PanelBlock>
+                  <PanelBlock>
+                    <Label>Category</Label>
+                    <Control>
+                      <Input
+                        name="category"
+                        type="text"
+                        placeholder="Enter Category"
+                        value={this.state.categories}
                         onChange={this.updateSearch}
                       ></Input>
                     </Control>
@@ -143,6 +148,7 @@ export default class Search extends Component {
                         name="radius"
                         type="text"
                         placeholder="Radius in miles"
+                        value={this.state.radius}
                         onChange={this.handleRadius}
                       ></Input>
                     </Control>
