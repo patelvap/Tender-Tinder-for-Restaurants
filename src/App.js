@@ -103,8 +103,8 @@ class App extends Component {
     } else {
       queryString += `latitude=${latitude}&longitude=${longitude}`;
       if (!checkCats) {
-        queryString += `&categories=${categories}`;
-      }
+        queryString += `&categories=restaurant,${categories}`;
+      } else {queryString += `&categories=restaurant`}
       if (!checkRad) {
         queryString += `&radius=${radius}`;
       }
@@ -116,7 +116,7 @@ class App extends Component {
       }
       if (!checkLimit) {
         queryString += `&limit=${limit}`;
-      }
+      } else {queryString += `&limit=50`}
     }
 
     fetch(`https://cors-anywhere.herokuapp.com/${queryString}`, {
@@ -126,6 +126,7 @@ class App extends Component {
     })
       .then(response => response.json())
       .then(data => {
+        //console.log(queryString)
         this.setState({
           results: data,
           latitude: latitude,

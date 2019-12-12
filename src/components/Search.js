@@ -23,7 +23,7 @@ export default class Search extends Component {
     this.state = {
       latitude: "", //(required)
       longitude: "", //(required)
-      category: "", //delimited strong of categories (optional)
+      categories: "", //delimited strong of categories (optional)
       radius: "", //(optional)
       term: "", //(optional) -> search term 
       offset: "", //(optional)
@@ -73,7 +73,7 @@ export default class Search extends Component {
       term,
       offset,
       limit
-    } = this.state;
+    } = this.state; 
     this.props.getTargets(
       latitude,
       longitude,
@@ -184,18 +184,18 @@ export default class Search extends Component {
                       {this.renderSuggestions()}
                     </Control>
                   </PanelBlock>
-                  {/* <PanelBlock>
+                  <PanelBlock>
                     <Label>Category</Label>
                     <Control>
                       <Input
-                        name="category"
+                        name="categories"
                         type="text"
-                        placeholder="Enter Category"
-                        value={this.state.category}
+                        placeholder="Enter Categories"
+                        value={this.state.categories}
                         onChange={this.updateSearch}
                       ></Input>
                     </Control>
-                  </PanelBlock> */}
+                  </PanelBlock>
                   <PanelBlock>
                     <Label>Search Radius</Label>
                     <Control>
