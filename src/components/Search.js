@@ -100,7 +100,7 @@ export default class Search extends Component {
     });
   };
 
-  async yelpAutocomplete() {
+  yelpAutocomplete() {
     let yelpKey = `pm8o9ejAV8iA0lnYN8fK4lEKdh6nVH3foW1CB76vo0kVN9IK6dqv6awLhlVSWpm81FeaXAgGyEOnycrvc6HdXlPtbcQv7vC1wvOjkJ4Ei7LLrhvH-K3xQHtxafbWXXYx`; //our yelp api key
 
     let searchURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/autocomplete?";
@@ -115,12 +115,10 @@ export default class Search extends Component {
         let pushing = [];
         if (data !== undefined && data.terms !== undefined && data.terms.length > 0) {
           for (let i = 0; i < data.terms.length; i++) {
-            pushing.push(data.terms[i].text)
-            //this.suggestions.push(terms[i].text);
-            //console.log(pushing)
+            pushing.push(data.terms[i].text);
           }
-          this.suggestions = pushing;
-        }
+		}
+		this.suggestions = pushing;
       });
       //console.log(pushing)
   }
@@ -137,7 +135,8 @@ export default class Search extends Component {
     }
     return (
       <ul>
-        {this.suggestions.map((elt => <li onClick={() => {this.suggestionSelect(elt); this.suggestions=[]}}>{elt}</li>))}
+        {this.suggestions.map((elt => 
+			<li key={elt} onClick={() => {this.suggestionSelect(elt); this.suggestions=[]}}>{elt}</li>))}
       </ul>
     )
   }
