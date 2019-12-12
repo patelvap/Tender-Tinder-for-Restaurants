@@ -22,6 +22,7 @@ export default class Review extends Component {
     submit = e => {
         e.preventDefault();
         this.uploadPost();
+        window.location.reload()
     };
 
     uploadPost(){
@@ -36,12 +37,10 @@ export default class Review extends Component {
             type: "merge"
           })
           .then(function (response) {
-            console.log("itworked");
-            console.log(response)
           })
           .catch(function (error) {
-            console.log(error);
           });
+          
     }
 
 
