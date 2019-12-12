@@ -116,7 +116,7 @@ class App extends Component {
       }
       if (!checkLimit) {
         queryString += `&limit=${limit}`;
-      }
+      } else {queryString += `&limit=50`}
     }
 
     fetch(`https://cors-anywhere.herokuapp.com/${queryString}`, {
