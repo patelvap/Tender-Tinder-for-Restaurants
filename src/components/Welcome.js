@@ -37,6 +37,16 @@ export default class Welcome extends Component {
     }
     
     render() {  
+        if(this.state.comb[0]===0){
+            return(
+                <Box>
+                    <Title>
+                        Welcome to our page - change this later!!!!!!
+                    </Title>
+                    <h1>Sign up to be the First User on the Site!</h1>
+                </Box>
+            )
+        }
         
         return (
             <Box>
