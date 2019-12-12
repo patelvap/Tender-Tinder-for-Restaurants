@@ -25,7 +25,7 @@ class Results extends Component {
   };
 
   render() {
-    if (this.state.outOfResults==true) {
+    if (this.state.outOfResults===true) {
       return(
         <Column isSize="1/2">
           <h1 className="title">Uh Oh! You have reached your swipe limit for today! If you are really that hungry, refresh and change your filters. Don't be a picky eater next time</h1>
@@ -35,7 +35,7 @@ class Results extends Component {
     if (this.props.results !== undefined) {
       let newResults = this.props.results.filter(this.props.checkBlacklist)
       let result = newResults[this.state.index];
-      if (newResults.length==0||result==undefined) {
+      if (newResults.length === 0||result === undefined) {
         this.state.outOfResults=true
         return(
           <Column isSize="1/2">
