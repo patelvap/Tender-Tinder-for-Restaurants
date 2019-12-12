@@ -11,18 +11,27 @@ class Results extends Component {
     this.state = {
       restaurantName: '',
       index: 0,
+      outOfResults: false
     };
   }
 
   updateIndex(newResultsPassed) { 
+    if (this.state.index === newResultsPassed.length-1) {
+      this.setState({outOfResults: true})
+    }
     this.setState({ index: this.state.index+1 })
     this.render();
-    if (this.state.index === newResultsPassed.length-1) {
-      this.setState({index: 0})
-    }
+    
   };
 
   render() {
+    if (this.state.outOfResults==true) {
+      return(
+        <Column isSize="1/2">
+          <h1 className="title">Uh Oh! Out of Results! Try changing your filter!</h1>
+        </Column>
+      )
+    }
     if (this.props.results !== undefined) {
       let newResults = this.props.results.filter(this.props.checkBlacklist)
       let result = newResults[this.state.index];
