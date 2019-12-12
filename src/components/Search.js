@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { debounce } from 'throttle-debounce';
 import {
   Label,
   Control,
@@ -15,7 +16,6 @@ import {
   ModalBackground,
   PanelBlock,
 } from "bloomer";
-import { watchFile } from "fs";
 
 export default class Search extends Component {
   constructor(props) {
@@ -38,7 +38,8 @@ export default class Search extends Component {
         latitude: position.coords.latitude,
         longitude: position.coords.longitude
       });
-    });
+	});
+	this.yelpAutocompleteDebounced = debounce(50, this.yelpAutocomplete);
     this.suggestions = [];
   }
 
@@ -112,7 +113,7 @@ export default class Search extends Component {
     }).then(res => res.json())
       .then(data => {
         let pushing = [];
-        if (data!==undefined || data.terms.length > 0) {
+        if (data !== undefined && data.terms !== undefined && data.terms.length > 0) {
           for (let i = 0; i < data.terms.length; i++) {
             pushing.push(data.terms[i].text)
             //this.suggestions.push(terms[i].text);
@@ -126,7 +127,7 @@ export default class Search extends Component {
 
   onTextChanged() {
     if (this.state.term !== ""){
-      this.yelpAutocomplete();
+      this.yelpAutocompleteDebounced();
     }
   }
 
@@ -153,14 +154,6 @@ export default class Search extends Component {
         renderHasRun: true
       });
     }
-    // if (this.state.runTotal < 1) {
-    //   console.log('test')
-    //   this.yelpAutocomplete('steak', this.state.latitude, this.state.longitude, true);
-    //   this.setState({
-    //     runTotal: 1
-    //   });
-      
-    // }
 
     return (
       <Container>
