@@ -51,11 +51,11 @@ export default class Welcome extends Component {
         return (
             <Box>
                 <Title>
-                    Welcome to our page - change this later!!!!!!
+                    Welcome to Tender
                 </Title>
-                <h1>Number of Users currently using our site</h1>
+                <h1>Join the more than {this.state.comb[0]} users currently finding great food on our site!</h1>
                 <p>
-                    {this.state.comb[0]}
+                    Click on the search tab to start looking for restaurants near your location. Make sure to turn on location services for a pleasurable experience. Also feel free to post restaurants suggestions or reviews for us under the Reviews Tab
                 </p>
             </Box>
             )

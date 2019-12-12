@@ -66,12 +66,11 @@ export default class Review extends Component {
             No Restaurant Suggestions Have Yet Been Uploaded. Be the first to Suggest!
           </Title>
         </Box>
-
       )
     }
 
     return (
-      <Column hasTextAlign="centered" isSize="1/2" color="primary">
+      <Column hasTextAlign="centered" isSize="1" color="primary">
         {this.state.comb.slice(0).reverse().map(result => {
           return (
           

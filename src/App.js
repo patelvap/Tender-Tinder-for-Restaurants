@@ -360,6 +360,9 @@ class App extends Component {
                       ></Icon>
                       by Tenderizers
                     </p>
+                    <br></br>
+                    <p>Stay Hungry My Friends 
+                    </p>
                   </Column>
                 </Columns>
               </Content>
