@@ -11,7 +11,6 @@ import {
   Box,
   Button,
   Icon,
-  Container,
   Columns,
   Column
 } from "bloomer";
@@ -44,7 +43,6 @@ class RestaurantCard extends Component {
               <Title hasTextAlign isSize={4}>
                 {this.props.name}
               </Title>
-              {/*<Subtitle isSize={6}>{this.props.categories}</Subtitle>*/}
             </MediaContent>
           </Media>
           <Content>
@@ -58,7 +56,7 @@ class RestaurantCard extends Component {
         <Box>
           <Columns isCentered>
             <Column isSize="1/3">
-              <Button isColor="danger" isFullWidth>
+              <Button isColor="danger" isFullWidth onClick={this.props.updateIndex}>
                 <Icon isAlign="left" className="fas fa-times"></Icon>
                 <span>I don't like this</span>
               </Button>
@@ -70,7 +68,7 @@ class RestaurantCard extends Component {
               </Button>
             </Column>
             <Column isSize="1/3">
-              <Button isColor="primary" isFullWidth>
+              <Button isColor="primary" isFullWidth onClick={this.props.updateIndex}>
                 <Icon isAlign="right" className="far fa-heart"></Icon>
                 <span>Save for Later</span>
               </Button>

@@ -295,7 +295,7 @@ class App extends Component {
                 <Search getTargets={this.getTargets} {...props} />
                 <br></br>
                 <Columns isCentered>
-                  <Results results={this.state.results.businesses} />
+                  <Results results={this.state.results.businesses} {...props}/>
                 </Columns>
               </Container>
             )}
@@ -316,7 +316,7 @@ class App extends Component {
           <div id="loginPopup">
             {this.state.showPopup ? 
                 <Popup
-                  loggedIn = {this.state.loggedIn}
+                  loggedIn={this.state.loggedIn}
                   closePopup={this.togglePopup.bind(this)}
                   handleUserDone={this.handleUserDone.bind(this)}
                   setStateApp={this.setState.bind(this)}

@@ -1,24 +1,32 @@
-import React from "react";
-import { Container, Label, Column } from "bloomer";
+import React, { Component} from "react";
+import { Column } from "bloomer";
 import RestaurantCard from "./RestaurantCard";
 
-const Results = ({ results }) => {
-  if (results === "none" || results === undefined) {
-    return null;
+class Results extends Component {
+  static propTypes = {}
+
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      restaurantName: '',
+      index: 0,
+    };
   }
 
-  if (results.length === 0) {
-    return (
-      <Container>
-        <Label>No Nearby Restaurants Found</Label>
-      </Container>
-    );
-  }
+  updateIndex() { 
+    this.setState({ index: this.state.index+1})
+    this.render();
+    if (this.state.index === 18) {
+      
+    }
+  };
 
-  return (
-    <Column isSize="1/2">
-      {results.map(result => {
-        return (
+  render() {
+    if (this.props.results !== undefined) {
+      let result = this.props.results[this.state.index];
+      return (
+        <Column isSize="1/2">
           <RestaurantCard
             name={result.name}
             imageURL={result.image_url}
@@ -28,11 +36,17 @@ const Results = ({ results }) => {
             category={result.categories[0].title}
             price={result.price}
             rating={result.rating}
-          />
-        );
-      })}
-    </Column>
-  );
-};
+            updateIndex={this.updateIndex.bind(this)}
+          /><br/>
+        </Column>
+      );
+    }
+    else {
+      return (
+        null
+      )
+    }
+  }
+}
 
-export default Results;
+export default Results

@@ -29,7 +29,7 @@ class Blacklist extends Component {
           {this.props.blacklist.map(item => {
             return (
               <BlacklistButton
-                id={item}
+                restaurant={item}
                 onDelete={this.props.onDelete}
               />
             );
