@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { debounce } from 'throttle-debounce';
 import {
   Label,
   Control,
@@ -15,7 +16,6 @@ import {
   ModalBackground,
   PanelBlock,
 } from "bloomer";
-import { watchFile } from "fs";
 
 export default class Search extends Component {
   constructor(props) {
@@ -38,7 +38,8 @@ export default class Search extends Component {
         latitude: position.coords.latitude,
         longitude: position.coords.longitude
       });
-    });
+	});
+	this.yelpAutocompleteDebounced = debounce(50, this.yelpAutocomplete);
     this.suggestions = [];
   }
 
@@ -126,7 +127,7 @@ export default class Search extends Component {
 
   onTextChanged() {
     if (this.state.term !== ""){
-      this.yelpAutocomplete();
+      this.yelpAutocompleteDebounced();
     }
   }
 

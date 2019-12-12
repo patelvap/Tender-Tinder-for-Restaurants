@@ -13,7 +13,6 @@ export default class Welcome extends Component {
     };
     
     getData() {
-        console.log("gjgjggjjg")
         const pubRoot = new axios.create({
             baseURL: "http://localhost:3000/public"
         });
@@ -22,9 +21,7 @@ export default class Welcome extends Component {
         pubRoot
         .get("/users")
         .then(response => {
-            
             comb.push(response.data.result.length)
-            console.log("ffff")
             this.updateBoxes(comb);
         })
         .catch(function (error) { });
