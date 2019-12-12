@@ -34,7 +34,8 @@ class Results extends Component {
     }
     if (this.props.results !== undefined) {
       let newResults = this.props.results.filter(this.props.checkBlacklist)
-      if (newResults.length==0) {
+      let result = newResults[this.state.index];
+      if (newResults.length==0||result==undefined) {
         this.state.outOfResults=true
         return(
           <Column isSize="1/2">
@@ -42,7 +43,6 @@ class Results extends Component {
           </Column>
         )
       }
-      let result = newResults[this.state.index];
       return (
         <Column isSize="1/2">
           <RestaurantCard
