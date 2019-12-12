@@ -282,7 +282,7 @@ class App extends Component {
 
   render() {
     if (!this.state.hasrun) {
-      if (this.state.loggedIn!=null) {
+      if (this.state.loggedIn!==null) {
         this.retrieveUserData()
       }
       this.setState({hasrun:true})

@@ -33,8 +33,8 @@ class RestaurantCard extends Component {
 
   render() {
     let cardGoogleURL = `https://www.google.com/maps/place/${this.props.address.split(' ').join('+')}`;
-    
-    if (this.props.loggedIn === true) {
+
+    if (this.props.loggedIn !== null) {
       return (
         <Card>
           <CardImage>
