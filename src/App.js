@@ -165,7 +165,7 @@ class App extends Component {
     });
     localStorage.setItem('loggedIn', null);
     localStorage.setItem('jwt', null);
-    location.reload();
+    window.location.reload();
   }
 
   //handles intialization of blacklist on account login
