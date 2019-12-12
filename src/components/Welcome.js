@@ -64,8 +64,8 @@ export default class Welcome extends Component {
         </p>
         <br />
         <p>
-          Logging in will give you additional features, like reviewing and
-          more!. So sign-up now!{" "}
+          Logging in will give you additional features, like reviewing and more!
+          So sign-up now!{" "}
         </p>
       </Box>
     );
