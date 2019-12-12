@@ -176,6 +176,7 @@ export default class Search extends Component {
                 <Panel>
                   <PanelBlock>
                     <Label>Search Term</Label>
+                    &nbsp; &nbsp;
                     <Control className='autocomplete'>
                       <Input
                         name="term"
@@ -192,6 +193,7 @@ export default class Search extends Component {
                   </PanelBlock>
                   <PanelBlock>
                     <Label>Category</Label>
+                    &nbsp; &nbsp; &nbsp;
                     <Control>
                       <Input
                         name="categories"

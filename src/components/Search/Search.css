@@ -1,11 +1,4 @@
-.autocomplete {
-    border: 1px solid grey;
-    box-shadow:  0 0 0 1px rgba(0,0,0,.1), 0 , 2px,4px, 1px rgba(0,0,0,.18);
-    color: rgba(0, 0, 0, .73);
-}
-
 .autocomplete input {
-    border: none;
     color: rgba(0, 0, 0, .73);
     padding: 10px 5px;
     box-sizing: border-box;

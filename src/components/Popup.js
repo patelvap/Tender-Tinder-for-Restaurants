@@ -1,5 +1,13 @@
 import React, { Component } from 'react';
-import { Box, Field, Label, Control, Input, Button } from 'bloomer';
+import { 
+    Container,
+    Box,
+    Field, 
+    Label, 
+    Control,
+    Input, 
+    Button 
+} from 'bloomer';
 import axios from 'axios';
 
 //testing login popup:
@@ -147,36 +155,39 @@ export default class Popup extends Component {
             <br></br>
             <h1 class="title">{this.state.textInfo}:</h1>
             <Box>
-                <form status={this.state.textInfo} onSubmit={this.submitHandler}>
-                    <Field isHorizontal>
-                        <Label isSize="large">Username:</Label>
-                        <Control>
-                            <Input name="username" type="text" placeholder="Username" onChange={this.updateCred}></Input>
+                <Container>
+                    <form status={this.state.textInfo} onSubmit={this.submitHandler}>
+                        <Field isHorizontal>
+                            <Label isSize="large">Username:</Label>
+                            &nbsp; &nbsp;
+                            <Control>
+                                <Input name="username" type="text" placeholder="Username" onChange={this.updateCred}></Input>
+                            </Control>
+                        </Field>
+                        <Field isHorizontal>
+                            <Label isSize="large">Password:</Label>
+                            &nbsp; &nbsp; &nbsp;
+                            <Control>
+                                <Input name="password" type="password" placeholder="Password" onChange={this.updateCred}></Input>
+                            </Control>
+                        </Field>
+                        <Field isGrouped>
+                            <Control><Button isSize="large" isColor='primary' type='submit' status={this.state.textInfo} username={this.state.usernameBox} password={this.state.passBox} onClick={this.props.handleUserDone}>{this.state.textInfo}</Button></Control>
+                            <Control><Button isSize="large" isColor='primary' type='button' isLink onClick={this.props.closePopup}>Cancel</Button></Control>
+                            <Label isColor='red'>{this.state.errorMessage}</Label>
+                        </Field>
+                    </form>
+                </Container>
+                <br/><br/>
+                <Container>
+                    <h2 class="subtitle">{this.state.switchModeText}</h2>
+                    <Field>
+                        <Control isAlign='center'>
+                            <Button isSize="large" isColor='primary' status={this.state.modeButton} onClick={this.updateMode}>{this.state.modeButton}</Button>
                         </Control>
                     </Field>
-                    <Field isHorizontal>
-                        <Label isSize="large">Password:</Label>
-                        <Control>
-                            <Input name="password" type="password" placeholder="Password" onChange={this.updateCred}></Input>
-                        </Control>
-                    </Field>
-                    <Field isGrouped>
-                        <Control><Button isSize="large" isColor='primary' type='submit' status={this.state.textInfo} username={this.state.usernameBox} password={this.state.passBox} onClick={this.props.handleUserDone}>{this.state.textInfo}</Button></Control>
-                        <Control><Button isSize="large" isColor='primary' type='button' isLink onClick={this.props.closePopup}>Cancel</Button></Control>
-                        <Label isColor='red'>{this.state.errorMessage}</Label>
-                    </Field>
-                </form>
+                </Container>
             </Box>
-            <br></br>
-            <Box>
-                <h2 class="subtitle">{this.state.switchModeText}</h2>
-                <Field>
-                    <Control>
-                        <Button isSize="large" isColor='primary' status={this.state.modeButton} onClick={this.updateMode}>{this.state.modeButton}</Button>
-                    </Control>
-                </Field>
-            </Box>
-          
           </div>
         </div>
       );
