@@ -57,8 +57,8 @@ export default class Welcome extends Component {
                 <br></br>
                 <br></br>
                 <p>
-                    From the producers of TINDER (jk), comes the new restaurants matching app. Get Paired with the best local restaurants with a click of a button
-                    Click on the search tab to start looking for restaurants near your location. Make sure to turn on location services for a pleasurable experience. Also feel free to post restaurants suggestions or reviews for us under the Reviews Tab
+                    From the producers of TINDER (jk), comes the new restaurants matching app. Get Paired with the best local restaurants with a click of a button.
+                    Use the search tab above to start looking for restaurants near your location. Make sure to turn on location services for a pleasurable experience. Also feel free to post restaurants suggestions or reviews for us under the Reviews Tab
                 </p>
             </Box>
             )
