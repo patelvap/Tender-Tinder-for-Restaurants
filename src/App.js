@@ -43,7 +43,7 @@ class App extends Component {
         categories: "", //delimited strong of categories (optional)
         radius: "", //(optional)
         term: "", //(optional)
-        offset: "", //(optional)
+        offset: 0, //(optional)
         limit: "" //(optional)\
       }
     } else {
@@ -59,7 +59,7 @@ class App extends Component {
         categories: "", //delimited strong of categories (optional)
         radius: "", //(optional)
         term: "", //(optional)
-        offset: "", //(optional)
+        offset: 0, //(optional)
         limit: "" //(optional)\
       };
     }
@@ -295,7 +295,12 @@ class App extends Component {
                 <Search getTargets={this.getTargets} {...props} />
                 <br></br>
                 <Columns isCentered>
-                  <Results results={this.state.results.businesses} {...props}/>
+                  <Results 
+                    results={this.state.results.businesses} 
+                    blacklist={this.addToBlacklist.bind(this)}
+                    loggedIn={this.state.loggedIn}
+                    {...props}
+                  />
                 </Columns>
               </Container>
             )}

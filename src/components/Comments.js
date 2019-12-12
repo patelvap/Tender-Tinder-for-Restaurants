@@ -16,6 +16,7 @@ import {
   Column
 } from "bloomer";
 import axios from "axios";
+
 export default class Review extends Component {
   constructor() {
     super();

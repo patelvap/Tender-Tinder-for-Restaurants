@@ -15,10 +15,10 @@ class Results extends Component {
   }
 
   updateIndex() { 
-    this.setState({ index: this.state.index+1})
+    this.setState({ index: this.state.index+1 })
     this.render();
-    if (this.state.index === 18) {
-      
+    if (this.state.index === 19) {
+
     }
   };
 
@@ -28,6 +28,7 @@ class Results extends Component {
       return (
         <Column isSize="1/2">
           <RestaurantCard
+            result={result}
             name={result.name}
             imageURL={result.image_url}
             phone={result.phone}
@@ -37,6 +38,8 @@ class Results extends Component {
             price={result.price}
             rating={result.rating}
             updateIndex={this.updateIndex.bind(this)}
+            blacklist={this.props.blacklist}
+            loggedIn={this.props.loggedIn}
           /><br/>
         </Column>
       );
@@ -44,7 +47,7 @@ class Results extends Component {
     else {
       return (
         null
-      )
+      );
     }
   }
 }

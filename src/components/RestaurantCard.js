@@ -56,7 +56,14 @@ class RestaurantCard extends Component {
         <Box>
           <Columns isCentered>
             <Column isSize="1/3">
-              <Button isColor="danger" isFullWidth onClick={this.props.updateIndex}>
+              <Button isColor="danger" isFullWidth 
+                onClick={() => {
+                  this.props.updateIndex();
+                  if (this.props.loggedIn !== null)
+                    this.props.blacklist(this.props.result);
+                  }
+                }
+              >
                 <Icon isAlign="left" className="fas fa-times"></Icon>
                 <span>I don't like this</span>
               </Button>
@@ -68,7 +75,11 @@ class RestaurantCard extends Component {
               </Button>
             </Column>
             <Column isSize="1/3">
-              <Button isColor="primary" isFullWidth onClick={this.props.updateIndex}>
+              <Button isColor="primary" isFullWidth 
+                onClick={() => {
+                  this.props.updateIndex();
+                }}
+              >
                 <Icon isAlign="right" className="far fa-heart"></Icon>
                 <span>Save for Later</span>
               </Button>
