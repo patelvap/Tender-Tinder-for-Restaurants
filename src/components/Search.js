@@ -184,7 +184,7 @@ export default class Search extends Component {
                       {this.renderSuggestions()}
                     </Control>
                   </PanelBlock>
-                  {/* <PanelBlock>
+                  <PanelBlock>
                     <Label>Category</Label>
                     <Control>
                       <Input
@@ -195,7 +195,7 @@ export default class Search extends Component {
                         onChange={this.updateSearch}
                       ></Input>
                     </Control>
-                  </PanelBlock> */}
+                  </PanelBlock>
                   <PanelBlock>
                     <Label>Search Radius</Label>
                     <Control>
