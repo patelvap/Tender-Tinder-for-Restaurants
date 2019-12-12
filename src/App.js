@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import Search from "./components/Search";
+import Search from "./components/Search/Search";
 import MenuBar from "./components/Menubar";
 import Popup from "./components/Popup";
 import Settings from "./components/Settings";
