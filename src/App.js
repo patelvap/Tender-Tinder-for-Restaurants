@@ -346,6 +346,24 @@ class App extends Component {
               </Container>
             )}
           />
+          <Footer id="footer">
+            <Container>
+              <Content>
+                <Columns>
+                  <Column isFull>
+                    <p>
+                      Made with
+                      <Icon
+                        hasTextColor="danger"
+                        className="fa fa-heart"
+                      ></Icon>
+                      by Tenderizers
+                    </p>
+                  </Column>
+                </Columns>
+              </Content>
+            </Container>
+          </Footer>
           <div id="loginPopup">
             {this.state.showPopup ? 
                 <Popup
@@ -370,24 +388,6 @@ class App extends Component {
               />
             ) : null}
           </div>
-          <Footer id="footer">
-            <Container>
-              <Content>
-                <Columns>
-                  <Column isFull>
-                    <p>
-                      Made with
-                      <Icon
-                        hasTextColor="danger"
-                        className="fa fa-heart"
-                      ></Icon>
-                      by Tenderizers
-                    </p>
-                  </Column>
-                </Columns>
-              </Content>
-            </Container>
-          </Footer>
         </div>
       </Router>
     );

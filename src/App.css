@@ -21,6 +21,12 @@
   color: #09d3ac;
 }
 
+#footer {
+  position: absolute;
+  bottom: 30px;
+  width: 100%;
+}
+
 .popup {
   position: fixed;
   width: 100%;
@@ -59,10 +65,10 @@
 }
 .settingspopup_inner {
   position: absolute;
-  left: 10%;
-  right: 10%;
-  top: 10%;
-  bottom: 10%;
+  left: 15%;
+  right: 15%;
+  top: 15%;
+  bottom: 15%;
   margin: auto;
   background: white;
   border-radius: 25px;
