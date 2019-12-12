@@ -15,6 +15,7 @@ import {
   ModalBackground,
   PanelBlock,
 } from "bloomer";
+import { watchFile } from "fs";
 
 export default class Search extends Component {
   constructor(props) {
@@ -22,7 +23,7 @@ export default class Search extends Component {
     this.state = {
       latitude: "", //(required)
       longitude: "", //(required)
-      categories: "", //delimited strong of categories (optional)
+      category: "", //delimited strong of categories (optional)
       radius: "", //(optional)
       term: "", //(optional) -> search term 
       offset: "", //(optional)
@@ -41,14 +42,14 @@ export default class Search extends Component {
     this.suggestions = [];
   }
 
-  updateSearch = e => {
+  updateSearch = (e) => {
     e.preventDefault();
     this.setState({
       [e.target.name]: e.target.value
     });
   };
 
-  submit = e => {
+  submit = (e) => {
     if (e !== undefined) { e.preventDefault(); } //event will never be undefined?
     navigator.geolocation.getCurrentPosition(position => {
       this.setState({
@@ -87,7 +88,7 @@ export default class Search extends Component {
     this.setState({ isActive: !this.state.isActive });
   }
 
-  handleRadius = e => {
+  handleRadius = (e) => {
     e.preventDefault();
     let rad = e.target.value * 1609.344;
     if (rad > 40000) {
@@ -98,48 +99,35 @@ export default class Search extends Component {
     });
   };
 
-  async yelpAutocomplete(text, latitude, longitude, needsCorsAnywhere) {
+  async yelpAutocomplete() {
     let yelpKey = `pm8o9ejAV8iA0lnYN8fK4lEKdh6nVH3foW1CB76vo0kVN9IK6dqv6awLhlVSWpm81FeaXAgGyEOnycrvc6HdXlPtbcQv7vC1wvOjkJ4Ei7LLrhvH-K3xQHtxafbWXXYx`; //our yelp api key
-    let finalResult;
-    if (latitude == undefined || longitude == undefined) {
-      return null;
-    }
-    let searchURL = ""; //intially empty URL
-    if (
-      needsCorsAnywhere === undefined ||
-      needsCorsAnywhere === false ||
-      needsCorsAnywhere === null
-    ) {
-      //decides on base URL, whether we need cors-anywhere or not. appends accordingly
-      searchURL = searchURL + "https://api.yelp.com/v3/autocomplete?";
-    } else {
-      searchURL =
-        searchURL +
-        "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/autocomplete?";
-    }
 
+    let searchURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/autocomplete?";
+    
     searchURL =
-      searchURL + `text=${text}&latitude=${latitude}&longitude=${longitude}`; //appends everything.
+      searchURL + `text=${this.state.term}&latitude=${this.state.latitude}&longitude=${this.state.longitude}`; //appends everything.
 
-    //let pushing = [];
     fetch(`${searchURL}`, {
       headers: { Authorization: "Bearer " + yelpKey }
     }).then(res => res.json())
       .then(data => {
-        let terms = data.terms;
-        for (let i = 0; i < terms.length; i++) {
-          //pushing.push(terms[i].text)
-          this.suggestions.push(terms[i].text);
-          //console.log(pushing)
+        let pushing = [];
+        if (data!==undefined || data.terms.length > 0) {
+          for (let i = 0; i < data.terms.length; i++) {
+            pushing.push(data.terms[i].text)
+            //this.suggestions.push(terms[i].text);
+            //console.log(pushing)
+          }
+          this.suggestions = pushing;
         }
       });
       //console.log(pushing)
   }
 
-  onTextChanged = (e) => {
-    const text = e.target.value;
-    this.yelpAutocomplete(text);
-    console.log(this.suggestions)
+  onTextChanged() {
+    if (this.state.term !== ""){
+      this.yelpAutocomplete();
+    }
   }
 
   renderSuggestions() {
@@ -148,9 +136,13 @@ export default class Search extends Component {
     }
     return (
       <ul>
-        {this.suggestions.map((elt => <li>{elt}</li>))}
+        {this.suggestions.map((elt => <li onClick={() => {this.suggestionSelect(elt); this.suggestions=[]}}>{elt}</li>))}
       </ul>
     )
+  }
+
+  suggestionSelect (value) {
+    this.setState({term : value});
   }
 
   //need to add categories in this - combo box
@@ -167,6 +159,7 @@ export default class Search extends Component {
     //   this.setState({
     //     runTotal: 1
     //   });
+      
     // }
 
     return (
@@ -191,9 +184,9 @@ export default class Search extends Component {
                         type="text"
                         placeholder="Enter restaurant"
                         value={this.state.term}
-                        onChange={() => {
-                          this.updateSearch();
-                          //this.onTextChanged();
+                        onChange={(e) => {
+                          this.updateSearch(e);
+                          this.onTextChanged();
                         }}
                       ></Input>
                       {this.renderSuggestions()}
@@ -206,7 +199,7 @@ export default class Search extends Component {
                         name="category"
                         type="text"
                         placeholder="Enter Category"
-                        value={this.state.categories}
+                        value={this.state.category}
                         onChange={this.updateSearch}
                       ></Input>
                     </Control>
