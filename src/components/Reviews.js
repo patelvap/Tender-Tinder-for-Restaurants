@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, TextArea, Text, Box, Field, Label, Control, Input, Button } from 'bloomer';
+import { View, Title, TextArea, Text, Box, Field, Label, Control, Input, Button } from 'bloomer';
 import axios from 'axios';
 
 export default class Review extends Component {
@@ -25,13 +25,15 @@ export default class Review extends Component {
     };
 
     uploadPost(){
-    
-        console.log("getting her")
+        let jwt = localStorage.getItem('jwt')
         const pubRoot = new axios.create({
-            baseURL: "http://localhost:3000/public"
+            baseURL: "http://localhost:3000/private",
+            headers: {Authorization: `Bearer ${jwt}`}
           });
         pubRoot.post(`/reviews/`, {
-            data: {review: this.state.review, username: this.state.username}
+            data: {review: this.state.review, username: this.props.username},
+            headers: {Authorization: `Bearer ${jwt}`},
+            type: "merge"
           })
           .then(function (response) {
             console.log("itworked");
@@ -53,22 +55,24 @@ export default class Review extends Component {
             <Box>
                 <form onSubmit={this.submit}>
                     <Field>
-                        <p>Used for the Review Page</p>
-                    </Field>
-
-                    <Field>
-                        <Label>Insert Reviews</Label>
+                        <Title isSize={3}>Help others out by giving them suggestions!</Title>
                         <Control>
                             <Input
+                                class= "is-rounded"
                                 name="review"
                                 type="text"
                                 placeholder="Post Your Review Here"
                                 onChange={this.updateReview}
-                            ></Input>                        </Control>
+                            ></Input>  
+                        </Control>
+                        <br></br>
                         <Control>
                             <Button
-                                isColor="primary"
+                                isColor="link"
                                 type="submit"
+                                isHovered= "true"
+                                ali ="centered"
+
                             >
                                 Post!
                             </Button>
