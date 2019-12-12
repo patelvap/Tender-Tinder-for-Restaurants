@@ -14,10 +14,10 @@ class Results extends Component {
     };
   }
 
-  updateIndex() { 
+  updateIndex(newResultsPassed) { 
     this.setState({ index: this.state.index+1 })
     this.render();
-    if (this.state.index === 49) {
+    if (this.state.index === newResultsPassed.length-1) {
       this.setState({index: 0})
     }
   };
@@ -41,6 +41,7 @@ class Results extends Component {
             updateIndex={this.updateIndex.bind(this)}
             blacklist={this.props.blacklist}
             loggedIn={this.props.loggedIn}
+            newResults={newResults}
           /><br/>
         </Column>
       );

@@ -18,7 +18,7 @@ export default class Popup extends Component {
       
       return (
         <div className='settingspopup'>
-          <div className='settingspopup_inner'>
+          <div style={{padding: '15px'}} className='settingspopup_inner'>
             <br></br>
             <h1 class="title">{this.props.loggedIn}'s Settings:</h1>
             <Box>

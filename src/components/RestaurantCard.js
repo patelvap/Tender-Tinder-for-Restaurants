@@ -60,7 +60,7 @@ class RestaurantCard extends Component {
             <Column isSize="1/3">
               <Button isColor="danger" isFullWidth 
                 onClick={() => {
-                  this.props.updateIndex();
+                  this.props.updateIndex(this.props.newResults);
                   if (this.props.loggedIn !== null)
                     this.props.blacklist(this.props.result);
                   }
@@ -83,7 +83,7 @@ class RestaurantCard extends Component {
             <Column isSize="1/3">
               <Button isColor="primary" isFullWidth 
                 onClick={() => {
-                  this.props.updateIndex();
+                  this.props.updateIndex(this.props.newResults);
                 }}
               >
                 <Icon isAlign="right" className="far fa-heart"></Icon>
