@@ -1,4 +1,5 @@
 # Tender-Tinder-for-Restaurants
+## By Vraj Patel, Noah Foster, Surya Podiutoori, Varun Tanna, Mark Drewery
 
 <h2>Getting started</h2>
 
@@ -17,12 +18,18 @@ Afterwards there are two steps to initiate the server!
 
 Open a new terminal in your editor.
 Run `npm run dev-live-reload`
-This will initiate a server on your localhost's machine.
+This will initiate a server on your localhost's machine on port 3000.
 
 <h3>Step 2: Launching the frontend.</h3>
 
 Open a new terminal in your editor.
 Run `npm start`
-This will initiate your frontend and allow for interaction!
+This will initiate your frontend on a free port and allow for interaction!
 
 That's it, you're ready to find your favorite restaurant!
+
+Our app has the functionality to search for restaurants in your area and gives the ability to 
+redirect you to the restaurant. 
+
+Users who choose to create an account with the site have the ability to save restaurants for later 
+as well as blacklist restaurants that they do not wish to see filtering them from their restaurant feed.
