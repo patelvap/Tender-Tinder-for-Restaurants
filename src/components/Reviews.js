@@ -25,11 +25,14 @@ export default class Review extends Component {
     };
 
     uploadPost(){
+        let jwt = localStorage.getItem('jwt')
         const pubRoot = new axios.create({
-            baseURL: "http://localhost:3000/public",
+            baseURL: "http://localhost:3000/private",
+            headers: {Authorization: `Bearer ${jwt}`}
           });
         pubRoot.post(`/reviews/`, {
             data: {review: this.state.review, username: this.props.username},
+            headers: {Authorization: `Bearer ${jwt}`},
             type: "merge"
           })
           .then(function (response) {

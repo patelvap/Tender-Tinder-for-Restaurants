@@ -34,13 +34,14 @@ export default class Review extends Component {
   }
 
   getData() {
+    let jwt = localStorage.getItem('jwt')
     const pubRoot = new axios.create({
-      baseURL: "http://localhost:3000/public"
+      baseURL: "http://localhost:3000/private"
     });
  
     let comb = this.state.comb;
     pubRoot
-      .get("/reviews")
+      .get("/reviews", {headers: {Authorization: `Bearer ${jwt}`},})
       .then(response => {
         for (let i = 0; i < response.data.result.length; i++) {
           comb.push({ review: response.data.result[i].review, user: response.data.result[i].username })
