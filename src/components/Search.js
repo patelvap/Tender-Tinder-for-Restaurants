@@ -29,7 +29,8 @@ export default class Search extends Component {
       limit: "", //(optional)
       isActive: false,
       renderHasRun: false,
-      runTotal: 0
+      runTotal: 0,
+      autocomplete: [],
     };
     navigator.geolocation.getCurrentPosition(position => {
       this.setState({
@@ -47,7 +48,7 @@ export default class Search extends Component {
   };
 
   submit = e => {
-    if (e!==undefined) {e.preventDefault();} //event will never be undefined?
+    if (e !== undefined) { e.preventDefault(); } //event will never be undefined?
     navigator.geolocation.getCurrentPosition(position => {
       this.setState({
         latitude: position.coords.latitude,
@@ -97,27 +98,26 @@ export default class Search extends Component {
   };
 
   /**
-   * Searches Yelp API for autocomplete suggestions, returns an object containing suggestions for business titles, key words, and categories.
-   *
-   * @param {string} text text to be completed by the autocomplete request, probably the contents of a search bar.
-   * @param {number} latitude latitude of position about which to search (required) returns null when undefined
-   * @param {number} longitude longitude of position about which to search (required) returns null when undefined
-   * @param {boolean} needsCorsAnywhere boolean governing the use of cors-anywhere, cors-anywhere is enabled when true (optional)
-   *
-   *
-   */
+  * Searches Yelp API for autocomplete suggestions, returns an object containing suggestions for business titles, key words, and categories.
+  *
+  * @param {string} text text to be completed by the autocomplete request, probably the contents of a search bar.
+  * @param {number} latitude latitude of position about which to search (required) returns null when undefined
+  * @param {number} longitude longitude of position about which to search (required) returns null when undefined
+  * @param {boolean} needsCorsAnywhere boolean governing the use of cors-anywhere, cors-anywhere is enabled when true (optional)
+  *
+  *
+  */
   yelpAutocomplete(text, latitude, longitude, needsCorsAnywhere) {
     let yelpKey = `pm8o9ejAV8iA0lnYN8fK4lEKdh6nVH3foW1CB76vo0kVN9IK6dqv6awLhlVSWpm81FeaXAgGyEOnycrvc6HdXlPtbcQv7vC1wvOjkJ4Ei7LLrhvH-K3xQHtxafbWXXYx`; //our yelp api key
     let finalResult;
-
     if (latitude == undefined || longitude == undefined) {
       return null;
     }
     let searchURL = ""; //intially empty URL
     if (
-      needsCorsAnywhere == undefined ||
-      needsCorsAnywhere == false ||
-      needsCorsAnywhere == null
+      needsCorsAnywhere === undefined ||
+      needsCorsAnywhere === false ||
+      needsCorsAnywhere === null
     ) {
       //decides on base URL, whether we need cors-anywhere or not. appends accordingly
       searchURL = searchURL + "https://api.yelp.com/v3/autocomplete?";
@@ -130,54 +130,43 @@ export default class Search extends Component {
     searchURL =
       searchURL + `text=${text}&latitude=${latitude}&longitude=${longitude}`; //appends everything.
 
-    async function makeRequest() {
-      //actually makes request
-      await fetch(`${searchURL}`, {
-        headers: { Authorization: "Bearer " + yelpKey }
-      }).then(res => res.json().then(setFin));
-    }
+    let pushing = this.state.autocomplete;
+    fetch(`${searchURL}`, {
+      headers: { Authorization: "Bearer " + yelpKey }
+    }).then(res => res.json())
+      .then(data => {
+        let terms = data.terms;
+        pushing.push(terms);
+        //this.setState({autocomplete: data.terms})
+      });
 
-    async function setFin(query) {
-      //sets finalResult after the request returns
-      finalResult = query;
-    }
-
-    makeRequest(); //makes function wait until end of request
-
-    return finalResult;
+    this.setState({
+      autocomplete: pushing
+    });
   }
 
-  runOnce() {
-    console.log(
-      this.yelpAutocomplete(
-        "steak",
-        this.state.latitude,
-        this.state.longitude,
-        true
-      )
-    );
-  }
+
 
   //need to add categories in this - combo box
   render() {
-    if (!this.state.renderHasRun&&this.state.longitude!==""&&this.state.latitude!=="") {
+    if (!this.state.renderHasRun && this.state.longitude !== "" && this.state.latitude !== "") {
       this.submit();
       this.setState({
         renderHasRun: true
       });
     }
     if (this.state.runTotal < 1) {
-      this.runOnce();
-      console.log("ran");
+      this.yelpAutocomplete('steak', this.state.latitude, this.state.longitude, true);
       this.setState({
         runTotal: 1
       });
+      
     }
     return (
       <Container>
         <Button onClick={this.changeActive.bind(this)}>
           Choose your filter!
-        </Button>
+              </Button>
         <form onSubmit={this.submit}>
           <Modal isActive={this.state.isActive}>
             <ModalBackground />
@@ -254,13 +243,13 @@ export default class Search extends Component {
                   onClick={this.changeActive.bind(this)}
                 >
                   Search
-                </Button>
+              </Button>
                 <Button
                   isColor="warning"
                   onClick={this.changeActive.bind(this)}
                 >
                   Cancel
-                </Button>
+              </Button>
               </ModalCardFooter>
             </ModalCard>
           </Modal>

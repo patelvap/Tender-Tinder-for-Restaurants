@@ -36,7 +36,7 @@ class BlacklistButton extends Component {
       <Container>
         <Box>
         <Field isGrouped>
-        <FieldLabel><Label>{this.props.restaurant.name}", "{this.props.restaurant.address}</Label></FieldLabel>
+        <FieldLabel><Label>{this.props.restaurant.name}, {this.props.restaurant.location.display_address.join(" ")}</Label></FieldLabel>
         <FieldBody><Button id={this.props.restaurant.id} onClick={this.props.onDelete}>DELETE</Button></FieldBody>
         </Field>
         </Box>

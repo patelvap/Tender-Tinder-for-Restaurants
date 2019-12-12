@@ -18,13 +18,14 @@ class Results extends Component {
     this.setState({ index: this.state.index+1 })
     this.render();
     if (this.state.index === 19) {
-
+      this.setState({index: 0})
     }
   };
 
   render() {
     if (this.props.results !== undefined) {
-      let result = this.props.results[this.state.index];
+      let newResults = this.props.results.filter(this.props.checkBlacklist)
+      let result = newResults[this.state.index];
       return (
         <Column isSize="1/2">
           <RestaurantCard

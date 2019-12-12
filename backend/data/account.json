@@ -5,6 +5,15 @@
     },
     "test": {
       "passwordHash": "$2b$10$pT34Po7ShjsH/ZgSzQT2Ke0D8biyY6n5S/w5qQYfx9JgMGfeLlmNy"
+    },
+    "nbfoster": {
+      "passwordHash": "$2b$10$G7XhtRcRH0Ik3p6XihZV2.sq4Mlarqbd8eF1IZkOL4YiPcqhRB056"
+    },
+    "vraj": {
+      "passwordHash": "$2b$10$jIq1VV5f8aofIwcO4C48fuN2BVZfFo0gB0mNbXxkP3urlyzeUr4rq"
+    },
+    "vrajp": {
+      "passwordHash": "$2b$10$3hoctFabI./UiXmizG2aBe8W7lDRbY3l88OYbnaJ47cCaov0XSTkS"
     }
   }
 }

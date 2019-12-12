@@ -4,5 +4,56 @@
   },
   "surya": {
     "blacklist": []
+  },
+  "nbfoster": {
+    "blacklist": [
+      {
+        "id": "rjW33uw9o5k1x5SlRaZfng",
+        "alias": "mediterranean-deli-chapel-hill-2",
+        "name": "Mediterranean Deli",
+        "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/qQGMmNmmUUJg95A0gubjNQ/o.jpg",
+        "is_closed": false,
+        "url": "https://www.yelp.com/biz/mediterranean-deli-chapel-hill-2?adjust_creative=jxpavrW-66I3Obpstl8qYA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=jxpavrW-66I3Obpstl8qYA",
+        "review_count": 803,
+        "categories": [
+          {
+            "alias": "mediterranean",
+            "title": "Mediterranean"
+          },
+          {
+            "alias": "delis",
+            "title": "Delis"
+          }
+        ],
+        "rating": 4.5,
+        "coordinates": {
+          "latitude": 35.91148,
+          "longitude": -79.06105
+        },
+        "transactions": [
+          "delivery"
+        ],
+        "price": "$$",
+        "location": {
+          "address1": "410 W Franklin St",
+          "address2": "",
+          "address3": "",
+          "city": "Chapel Hill",
+          "zip_code": "27516",
+          "country": "US",
+          "state": "NC",
+          "display_address": [
+            "410 W Franklin St",
+            "Chapel Hill, NC 27516"
+          ]
+        },
+        "phone": "+19199672666",
+        "display_phone": "(919) 967-2666",
+        "distance": 3985.800001744563
+      }
+    ]
+  },
+  "vrajp": {
+    "blacklist": []
   }
 }

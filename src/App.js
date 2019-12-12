@@ -28,8 +28,6 @@ const apiKey = `pm8o9ejAV8iA0lnYN8fK4lEKdh6nVH3foW1CB76vo0kVN9IK6dqv6awLhlVSWpm8
 class App extends Component {
   constructor() {
     super();
-    console.log("constructor running")
-    console.log(localStorage.getItem('loggedIn'))
     if (localStorage.getItem('loggedIn')=="null") {
       this.state={
         showPopup: false,
@@ -44,7 +42,8 @@ class App extends Component {
         radius: "", //(optional)
         term: "", //(optional)
         offset: 0, //(optional)
-        limit: "" //(optional)\
+        limit: "", //(optional)\
+        hasrun: false
       }
     } else {
       this.state = {
@@ -60,7 +59,8 @@ class App extends Component {
         radius: "", //(optional)
         term: "", //(optional)
         offset: 0, //(optional)
-        limit: "" //(optional)\
+        limit: "", //(optional)\
+        hasrun: false
       };
     }
 
@@ -128,7 +128,6 @@ class App extends Component {
     })
       .then(response => response.json())
       .then(data => {
-        console.log(data);
         this.setState({
           results: data,
           latitude: latitude,
@@ -138,7 +137,6 @@ class App extends Component {
           term: term,
           offset: offset,
           limit: limit,
-          hasrun: false
         });
       })
       .catch(() => {
@@ -151,7 +149,6 @@ class App extends Component {
           term: term,
           offset: offset,
           limit: limit,
-          hasrun: false
         });
       });
   };
@@ -175,7 +172,6 @@ class App extends Component {
   //handles intialization of blacklist on account login
   async retrieveUserData() {
     let jwt = localStorage.getItem('jwt')
-    console.log("testing retrieve")
     try {
        
       const result = await axios({
@@ -183,11 +179,8 @@ class App extends Component {
         url: `http://localhost:3000/user/blacklist`,
         headers: {Authorization: `Bearer ${jwt}`},
       });
-      console.log(result)
       this.setBlacklist(result.data.result)
     } catch (error) {
-      console.log(error)
-      console.log("in catch")
       const result = await axios({
         method: 'post',
         url: `http://localhost:3000/user/blacklist`,
@@ -204,8 +197,6 @@ class App extends Component {
     this.setState({
       blacklist: list
     })
-    console.log("blacklist:")
-    console.log(this.state.blacklist)
   }
 
   //updates blacklist on backend
@@ -243,7 +234,7 @@ class App extends Component {
     let toDelIndex=null
     let newList=this.state.blacklist
     for (let each in newList) {
-      if (newList[each]==toDelete) {
+      if (newList[each].id==toDelete) {
         toDelIndex=each
       }
     }
@@ -252,12 +243,12 @@ class App extends Component {
   }
 
   addToBlacklist(id) {
-    let newList=this.state.blacklist
-    newList.push(`${id}`)
+    let newList=this.state.blacklist;
+    newList.push(id);
     this.setState({
       blacklist: newList
-    })
-    this.updateBlacklist()
+    });
+    this.updateBlacklist();
   }
 
   saveSettings() {
@@ -270,6 +261,15 @@ class App extends Component {
     this.toggleSettings()
   }
 
+  checkBlacklist(restaurant) {
+    for (let each in this.state.blacklist) {
+      if (this.state.blacklist[each].id==restaurant.id) {
+        return false;
+      }
+    }
+    return true;
+  }
+
   render() {
     if (!this.state.hasrun) {
       if (this.state.loggedIn!=null) {
@@ -277,6 +277,9 @@ class App extends Component {
       }
       this.setState({hasrun:true})
     }
+    // let businessestopass=[];
+    // if (this.state.businesses===undefined) {businessestopass=undefined}
+    // else {businessestopass=this.state.results.businesses.filter(this.checkBlacklist)}
     return (
       <Router basename={process.env.PUBLIC_URL}>
         <div className="App">
@@ -297,6 +300,7 @@ class App extends Component {
                 <Columns isCentered>
                   <Results 
                     results={this.state.results.businesses} 
+                    checkBlacklist={this.checkBlacklist.bind(this)}
                     blacklist={this.addToBlacklist.bind(this)}
                     loggedIn={this.state.loggedIn}
                     {...props}

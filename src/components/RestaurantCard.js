@@ -32,6 +32,8 @@ class RestaurantCard extends Component {
   }
 
   render() {
+    let cardGoogleURL = `https://www.google.com/maps/place/${this.props.address.split(' ').join('+')}`;
+    
     return (
       <Card>
         <CardImage>
@@ -69,7 +71,11 @@ class RestaurantCard extends Component {
               </Button>
             </Column>
             <Column isSize="1/3">
-              <Button isColor="info" isFullWidth>
+              <Button isColor="info" isFullWidth
+                href={cardGoogleURL}
+                target='_blank'
+                rel='noopener noreferrer'
+              >
                 <Icon className="far fa-star"></Icon>
                 <span>Show me this!</span>
               </Button>
